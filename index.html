@@ -149,10 +149,10 @@
     .carousel-dots .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.2); cursor: pointer; transition: background .2s; }
     .carousel-dots .dot.active { background: var(--gold); }
     .carousel-track {display: flex; flex-wrap: nowrap; gap: 1.5rem; transition: transform .4s ease;}
-    .carousel-track .review-card {min-width: calc(33.333% - 1rem);  flex-shrink: 0}
+    .carousel-track .review-card { width: calc(33.333% - 1rem); flex-shrink: 0; overflow: hidden; }
     .review-card { background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 2rem; }
     .stars { color: var(--gold); font-size: .95rem; margin-bottom: 1rem; letter-spacing: .1em; }
-    .review-card blockquote { font-size: .88rem; color: rgba(255,255,255,.7); line-height: 1.7; font-style: italic; margin-bottom: 1.2rem; }
+    .review-card blockquote { font-size: .88rem; color: rgba(255,255,255,.7); line-height: 1.7; font-style: italic; margin-bottom: 1.2rem;white-space: normal;word-wrap: break-word}
     .review-author strong { font-size: .88rem; display: block; }
     .review-author span { font-size: .78rem; color: var(--grey); }
 
