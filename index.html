@@ -1,3 +1,457 @@
-.about-photo { /* Existing styles */ }
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Baptiste & Daphné – Conseillers Immobiliers iAD</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-.duo-photo-placeholder img, .about-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+  <style>
+    :root {
+      --navy:   #1B2B4B;
+      --navy2:  #162240;
+      --gold:   #C8973A;
+      --gold-lt:#D4A84B;
+      --cream:  #F5F0E8;
+      --white:  #FFFFFF;
+      --grey:   #8A9AB5;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Figtree', sans-serif; background: var(--navy); color: var(--white); overflow-x: hidden; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 5%;
+      background: rgba(27,43,75,0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(200,151,58,0.2);
+    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--white); letter-spacing: .04em; }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: rgba(255,255,255,.75); text-decoration: none; font-size: .87rem; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; transition: color .25s; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta { background: var(--gold) !important; color: var(--navy) !important; padding: .5rem 1.3rem; border-radius: 4px; font-weight: 700 !important; }
+    .nav-cta:hover { background: var(--gold-lt) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 8rem 5% 5rem;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(200,151,58,.08), transparent 70%),
+                  radial-gradient(ellipse 40% 60% at 10% 80%, rgba(200,151,58,.05), transparent 60%);
+      pointer-events: none;
+    }
+    .hero-text { position: relative; z-index: 2; }
+    .hero-eyebrow {
+      display: inline-block; font-size: .77rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--gold); border: 1px solid rgba(200,151,58,.4); padding: .4rem 1rem; border-radius: 2px;
+      margin-bottom: 2rem; animation: fadeUp .8s ease both;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 5.5vw, 5rem); font-weight: 900; line-height: 1.08;
+      margin-bottom: 1.5rem; animation: fadeUp .8s .15s ease both;
+    }
+    .hero h1 em { font-style: normal; color: var(--gold); }
+    .hero-sub { font-size: 1.1rem; color: rgba(255,255,255,.65); max-width: 480px; line-height: 1.75; margin-bottom: 2.5rem; animation: fadeUp .8s .3s ease both; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp .8s .45s ease both; }
+
+    .btn-primary { display: inline-block; background: var(--gold); color: var(--navy); font-weight: 700; font-size: .95rem; letter-spacing: .03em; padding: 1rem 2.2rem; border-radius: 4px; text-decoration: none; transition: background .25s, transform .2s; }
+    .btn-primary:hover { background: var(--gold-lt); transform: translateY(-2px); }
+    .btn-outline { display: inline-block; border: 1.5px solid rgba(255,255,255,.3); color: var(--white); font-weight: 500; font-size: .95rem; padding: 1rem 2rem; border-radius: 4px; text-decoration: none; transition: border-color .25s, color .25s, transform .2s; }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+    .hero-stat {
+      margin-top: 3rem; display: inline-flex; align-items: center; gap: 1.2rem;
+      background: rgba(255,255,255,.04); border: 1px solid rgba(200,151,58,.25); border-radius: 8px;
+      padding: 1rem 1.6rem; animation: fadeUp .8s .6s ease both;
+    }
+    .stat-big { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 900; color: var(--gold); line-height: 1; }
+    .stat-desc { font-size: .85rem; color: rgba(255,255,255,.6); line-height: 1.5; }
+    .stat-desc strong { color: var(--white); display: block; }
+
+    .hero-visual { display: flex; justify-content: center; align-items: center; animation: fadeIn 1s .3s ease both; }
+    .hero-card { background: rgba(255,255,255,.04); border: 1px solid rgba(200,151,58,.2); border-radius: 16px; padding: 2.5rem; text-align: center; max-width: 320px; }
+    .duo-photo-placeholder {
+      width: 190px; height: 210px; background: linear-gradient(160deg, rgba(200,151,58,.15), rgba(200,151,58,.03));
+      border-radius: 12px; margin: 0 auto 1.5rem; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; border: 1px dashed rgba(200,151,58,.3);
+      font-size: .8rem; color: rgba(255,255,255,.3); gap: .3rem; padding: 1rem; text-align: center;
+    }
+    .duo-names { font-family: 'Playfair Display', serif; font-size: 1.05rem; line-height: 1.7; margin-bottom: .4rem; }
+    .duo-names span { color: var(--gold); }
+    .duo-title { font-size: .78rem; color: var(--grey); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 1.2rem; }
+    .iad-badge { display: inline-block; border: 1px solid rgba(200,151,58,.4); padding: .35rem .9rem; border-radius: 20px; font-size: .75rem; color: var(--gold); letter-spacing: .1em; text-transform: uppercase; }
+
+    /* ── SECTION BASE ── */
+    section { padding: 6rem 5%; }
+    .section-label { font-size: .75rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: block; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 900; line-height: 1.15; margin-bottom: 1.2rem; }
+    .section-sub { font-size: 1.05rem; color: rgba(255,255,255,.6); line-height: 1.8; max-width: 560px; }
+    .divider { width: 3rem; height: 2px; background: var(--gold); margin: 1.5rem 0 2rem; }
+
+    /* ── POURQUOI ── */
+    .why { background: var(--navy2); }
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 4rem; }
+    .why-items { display: flex; flex-direction: column; gap: 1.8rem; }
+    .why-item { display: flex; gap: 1.2rem; align-items: flex-start; }
+    .why-icon { width: 44px; height: 44px; flex-shrink: 0; background: rgba(200,151,58,.12); border: 1px solid rgba(200,151,58,.3); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
+    .why-item h3 { font-size: 1rem; font-weight: 600; margin-bottom: .3rem; }
+    .why-item p { font-size: .9rem; color: rgba(255,255,255,.55); line-height: 1.6; }
+    .stat-card { background: rgba(255,255,255,.03); border: 1px solid rgba(200,151,58,.2); border-radius: 16px; padding: 3rem; text-align: center; }
+    .stat-card .num { font-family: 'Playfair Display', serif; font-size: 5rem; font-weight: 900; color: var(--gold); line-height: 1; display: block; }
+    .stat-card .label { font-size: 1rem; color: rgba(255,255,255,.6); margin-top: .8rem; line-height: 1.5; }
+    .stat-card .source { font-size: .75rem; color: var(--grey); margin-top: .5rem; }
+
+    /* ── SERVICES ── */
+    .services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3.5rem; }
+    .service-card { background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 2.2rem; transition: border-color .3s, transform .3s; position: relative; overflow: hidden; }
+    .service-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform .3s; }
+    .service-card:hover { border-color: rgba(200,151,58,.3); transform: translateY(-4px); }
+    .service-card:hover::after { transform: scaleX(1); }
+    .service-icon { font-size: 2rem; margin-bottom: 1.2rem; }
+    .service-card h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: .8rem; }
+    .service-card p { font-size: .88rem; color: rgba(255,255,255,.55); line-height: 1.7; }
+
+    /* ── ABOUT ── */
+    .about { background: var(--navy2); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 3rem; }
+    .about-photo-area { position: relative; }
+    .about-photo { width: 100%; aspect-ratio: 4/5; background: linear-gradient(160deg, rgba(200,151,58,.12), rgba(27,43,75,.8)); border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px dashed rgba(200,151,58,.25); font-size: .85rem; color: rgba(255,255,255,.25); text-align: center; padding: 2rem; gap: .5rem; }
+    .about-badge { position: absolute; bottom: -1.5rem; right: -1.5rem; background: var(--gold); color: var(--navy); border-radius: 12px; padding: 1.2rem 1.6rem; font-weight: 700; font-size: .88rem; line-height: 1.5; box-shadow: 0 8px 24px rgba(200,151,58,.3); }
+    .about-text blockquote { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-style: italic; color: var(--gold); border-left: 3px solid var(--gold); padding-left: 1.5rem; margin: 2rem 0; line-height: 1.6; }
+    .about-text p { font-size: .92rem; color: rgba(255,255,255,.6); line-height: 1.8; margin-bottom: 1rem; }
+    .profiles { display: flex; gap: 1.2rem; margin-top: 2rem; flex-wrap: wrap; }
+    .profile-chip { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: .8rem 1.2rem; }
+    .profile-chip strong { display: block; font-size: .92rem; margin-bottom: .15rem; }
+    .profile-chip span { font-size: .75rem; color: var(--grey); }
+
+    /* ── AVIS ── */
+    .reviews-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3.5rem; }
+    .review-card { background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 2rem; }
+    .stars { color: var(--gold); font-size: .95rem; margin-bottom: 1rem; letter-spacing: .1em; }
+    .review-card blockquote { font-size: .88rem; color: rgba(255,255,255,.7); line-height: 1.7; font-style: italic; margin-bottom: 1.2rem; }
+    .review-author strong { font-size: .88rem; display: block; }
+    .review-author span { font-size: .78rem; color: var(--grey); }
+
+    /* ── ZONE ── */
+    .zone { background: var(--navy2); }
+    .zone-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 3rem; }
+    .cities { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 2rem; }
+    .city-pill { background: rgba(200,151,58,.1); border: 1px solid rgba(200,151,58,.25); color: var(--gold); border-radius: 20px; padding: .4rem 1rem; font-size: .82rem; font-weight: 500; }
+    .map-placeholder { aspect-ratio: 1; background: rgba(255,255,255,.03); border: 1px dashed rgba(200,151,58,.2); border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: .85rem; color: rgba(255,255,255,.2); text-align: center; padding: 2rem; gap: .5rem; }
+
+    /* ── CTA / CALENDLY ── */
+    .cta-section { text-align: center; padding: 7rem 5%; position: relative; overflow: hidden; }
+    .cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(200,151,58,.1), transparent 70%); pointer-events: none; }
+    .cta-section .section-title { max-width: 700px; margin: .5rem auto 1.5rem; }
+    .cta-section .section-sub { max-width: 540px; margin: 0 auto 3rem; }
+    .calendly-wrapper { max-width: 900px; margin: 0 auto; border-radius: 16px; overflow: hidden; border: 1px solid rgba(200,151,58,.2); min-height: 700px; background: rgba(255,255,255,.02); }
+    .calendly-placeholder { min-height: 680px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; color: rgba(255,255,255,.3); font-size: .9rem; text-align: center; padding: 2rem; }
+    .calendly-placeholder .cal-icon { font-size: 3.5rem; }
+
+    /* ── CONTACT BAR ── */
+    .contact-bar { background: var(--gold); color: var(--navy); padding: 2.5rem 5%; display: flex; align-items: center; justify-content: center; gap: 2.5rem; flex-wrap: wrap; }
+    .contact-bar p { font-size: 1.1rem; font-weight: 600; }
+    .contact-bar a { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 900; color: var(--navy); text-decoration: none; letter-spacing: .05em; transition: opacity .2s; }
+    .contact-bar a:hover { opacity: .7; }
+    .contact-bar .sep { width: 1px; height: 40px; background: rgba(27,43,75,.2); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--navy2); border-top: 1px solid rgba(255,255,255,.06); padding: 2.5rem 5%; display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 1rem; white-space: nowrap; }
+    .footer-logo span { color: var(--gold); }
+    footer p { font-size: .73rem; color: var(--grey); max-width: 660px; line-height: 1.7; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; text-align: center; }
+      .hero-sub, .hero-stat { margin-left: auto; margin-right: auto; }
+      .hero-actions { justify-content: center; }
+      .hero-visual { margin-top: 3rem; }
+      .why-grid, .about-grid, .zone-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
+      .services-grid, .reviews-grid { grid-template-columns: 1fr 1fr; }
+      .about-badge { bottom: 1rem; right: 1rem; position: static; margin-top: 1.5rem; display: inline-block; }
+      nav .nav-links { display: none; }
+    }
+    @media (max-width: 600px) {
+      section { padding: 4rem 5%; }
+      .hero h1 { font-size: 2.2rem; }
+      .services-grid, .reviews-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav>
+  <div class="nav-logo">Baptiste &amp; Daphné <span>Immobilier</span></div>
+  <ul class="nav-links">
+    <li><a href="#pourquoi">Pourquoi nous</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#avis">Avis</a></li>
+    <li><a href="#rdv" class="nav-cta">Estimer mon bien</a></li>
+  </ul>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow">Conseillers immobiliers IAD — Chambéry & alentours </div>
+    <h1>Votre bien vaut <em>combien,</em><br/>vraiment&nbsp;?</h1>
+    <p class="hero-sub">Un mauvais départ coûte plus cher qu'une négociation. Avant de fixer votre prix, découvrez ce que le marché dit vraiment.</p>
+    <div class="hero-actions">
+      <a href="#rdv" class="btn-primary">📅 Prendre rendez-vous — Offert</a>
+      <a href="tel:0610327493" class="btn-outline">📞 06 10 32 74 93</a>
+    </div>
+    <div class="hero-stat">
+      <div class="stat-big">−8%</div>
+      <div class="stat-desc">
+        <strong>Décote moyenne</strong>
+        après un mauvais départ prix
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-card">
+      <div class="duo-photo-placeholder" style="padding:0;overflow:hidden"><img src="duonb.png" alt="Photo duo Baptiste et Daphné"></div>
+      <div class="duo-names">Baptiste <span>AUDOUIN</span><br/>Daphné <span>MARTIN MARIN</span></div>
+      <div class="duo-title">Conseillers immobiliers</div>
+      <span class="iad-badge">IAD Immobilier</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ POURQUOI ═══ -->
+<section class="why" id="pourquoi">
+  <span class="section-label">Avant de vendre, vérifiez</span>
+  <h2 class="section-title">Ce que les vendeurs<br/>ne savent pas</h2>
+  <div class="divider"></div>
+  <div class="why-grid">
+    <div class="why-items">
+      <div class="why-item">
+        <div class="why-icon">🔍</div>
+        <div>
+          <h3>À combien se vendent vraiment les biens similaires</h3>
+          <p>Pas le prix affiché. Le prix réel de vente, signés chez le notaire. On vous montre les données.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">⏱️</div>
+        <div>
+          <h3>Combien de temps ils restent en ligne</h3>
+          <p>Un bien qui stagne est un bien qui se négocie à la baisse. Nous analysons les délais moyens dans votre secteur.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">⚡</div>
+        <div>
+          <h3>Pourquoi certains biens se vendent vite… et d'autres non</h3>
+          <p>Parce que le marché sanctionne les départs improvisés. En travaillant la stratégie en amont, on anticipe les écarts au lieu de les subir..</p>
+        </div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <span class="num">−8%</span>
+      <p class="label">C'est la décote moyenne observée<br/>après un mauvais départ prix</p>
+      <p class="source">Source: Baromètre LPI-IAD</p>
+      <div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.08)">
+        <p style="font-size:.85rem;color:rgba(255,255,255,.5);margin-bottom:1rem">Un mauvais départ coûte plus cher qu'une négociation</p>
+        <a href="#rdv" class="btn-primary" style="font-size:.88rem">Estimer mon bien</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SERVICES ═══ -->
+<section id="services">
+  <span class="section-label">Nos prestations</span>
+  <h2 class="section-title">Ce que nous faisons<br/>pour vous</h2>
+  <div class="divider"></div>
+  <p class="section-sub">Un accompagnement complet, de l'estimation à la remise des clés, avec l'appui du réseau IAD Immobilier.</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🏠</div>
+      <h3>Estimation précise</h3>
+      <p>Analyse comparative de marché avec les données réelles de vente. Rendez-vous offert, sans engagement, à votre domicile.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📣</div>
+      <h3>Vente &amp; mise en marché</h3>
+      <p>Photos professionnelles, annonces multi-portails, réseau iAD de 18 000+ conseillers. Une exposition maximale pour votre bien.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔑</div>
+      <h3>Accompagnement acheteur</h3>
+      <p>Vous cherchez à acheter ? On sélectionne les biens correspondant réellement à vos critères et vous guide jusqu'à la signature.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📊</div>
+      <h3>Analyse de marché</h3>
+      <p>Tendances locales, délais de vente, prix au m² : des données concrètes pour décider sereinement.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🤝</div>
+      <h3>Négociation</h3>
+      <p>Nous défendons vos intérêts à chaque étape, de la première offre à la signature chez le notaire.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🗓️</div>
+      <h3>RDV d'estimation offert</h3>
+      <p>Réservez directement votre créneau en ligne. Un rendez-vous sans engagement pour repartir avec une vision claire de votre projet.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ABOUT ═══ -->
+<section class="about" id="about">
+  <span class="section-label">Le duo derrière le projet</span>
+  <h2 class="section-title">Baptiste &amp; Daphné</h2>
+  <div class="divider"></div>
+  <div class="about-grid">
+    <div class="about-photo-area">
+      <div class="about-photo" style="padding:0;overflow:hidden"><img src="duonb.png" alt="Photo duo Baptiste et Daphné"></div>
+      <div class="about-badge">Rendez-vous offert<br/>sans engagement ✨</div>
+    </div>
+    <div class="about-text">
+      <blockquote>« Un mauvais départ coûte plus cher qu'une négociation. »</blockquote>
+      <p>Nous sommes Baptiste et Daphné, mandataires indépendants en immobilier. 
+        Nous ne commençons jamais par un chiffre. Nous commençons par comprendre.</p>
+      <p>Comprendre votre situation. Lire le bien avec un regard acquéreur. Confronter l’ensemble aux ventes réellement signées dans le secteur.</p>
+      <p>Puis structurer. </p>
+      <p>Positionnement. Scénarios possibles. Conséquences de chaque choix.</p>
+      <p>Notre travail n’est pas de diffuser un bien. Il est de rendre la décision claire, lisible et maîtrisée dès le départ.</p>
+      <p>En travaillant en duo, nous confrontons nos analyses et sécurisons chaque étape. Deux lectures. Une stratégie cohérente..</p>
+      <div class="profiles">
+        <div class="profile-chip">
+          <strong>Baptiste AUDOUIN</strong>
+          <span>Mandataire IAD</span>
+        </div>
+        <div class="profile-chip">
+          <strong>Daphné MARTIN MARIN</strong>
+          <span>Mandataire IAD</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ AVIS ═══ -->
+<section id="avis">
+  <span class="section-label">Ce qu'ils en disent</span>
+  <h2 class="section-title">Avis de nos clients</h2>
+  <div class="divider"></div>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>« Un grand merci à Daphné et Baptiste ! Ils sont très professionnels, à l'écoute, disponibles et toujours de bon conseil. Grâce à leur accompagnement sérieux et humain, chaque étape se déroule en toute confiance. Si vous avez un projet immobilier, vous pouvez compter sur leur efficacité, leur réactivité et leur engagement. Je recommande vivement ! »</blockquote>
+      <div class="review-author">
+        <strong>Michèle B.</strong>
+        <span>⭐ Avis Google vérifié</span>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>« Excellent accompagnement dans la mise en vente de mon appartement, conseils pertinents, aucune pression pour quoi que ce soit, Baptiste va au rythme du client. Souriant, efficace, réactif. Je recommande chaudement ! »</blockquote>
+      <div class="review-author">
+        <strong>Nathalie H.</strong>
+        <span>⭐ Avis Google vérifié</span>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>« Baptiste a été d'une aide précieuse dans la concrétisation de notre projet immobilier. De la première visite jusqu'à la signature, un accompagnement sans faille à chaque étape. Sa gentillesse, sa disponibilité et sa réactivité font de lui un professionnel fiable, en qui on peut avoir confiance. Un grand merci ! »</blockquote>
+      <div class="review-author">
+        <strong>Nicolas G.</strong>
+        <span>⭐ Avis Google vérifié</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ZONE GEO ═══ -->
+<section class="zone" id="zone">
+  <span class="section-label">Notre terrain</span>
+  <h2 class="section-title">Zone d'intervention</h2>
+  <div class="divider"></div>
+  <div class="zone-wrap">
+    <div>
+      <p class="section-sub">Nous intervenons principalement en Savoie, autour de Chambéry et ses communes alentours.</p>
+      <div class="cities">
+        <span class="city-pill">Chambéry</span>
+        <span class="city-pill">Jacob-Bellecombette</span>
+        <span class="city-pill">Montagnole</span>
+        <span class="city-pill">Barberaz</span>
+        <span class="city-pill">Cognin</span>
+        <span class="city-pill">La Ravoire</span>
+        <span class="city-pill">Barby</span>
+        <span class="city-pill">Bassens</span>
+        <span class="city-pill">Challes-Les-Eaux</span>
+        <span class="city-pill">Saint-Alban-En-Leysse</span>
+        <span class="city-pill">Saint-Jean-D'Arvey</span>
+        <span class="city-pill">Thoiry</span>
+        <span class="city-pill">Et alentours…</span>
+      </div>
+      <div style="margin-top:2.5rem">
+        <p style="font-size:.9rem;color:rgba(255,255,255,.5);margin-bottom:.8rem">Pas dans cette liste ? Contactez-nous.</p>
+        <a href="tel:0610327493" class="btn-outline">📞 06 10 32 74 93</a>
+      </div>
+    </div>
+    <div style="border-radius:16px;overflow:hidden;border:1px solid rgba(200,151,58,.2);line-height:0;">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d44683.684089633396!2d5.9223654786586595!3d45.57586280170221!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sfr!4v1771864829011!5m2!1sfr!2sfr" width="100%" height="450" style="border:0;display:block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CALENDLY / CTA ═══ -->
+<section class="cta-section" id="rdv">
+  <span class="section-label">Rendez-vous offert, sans engagement</span>
+  <h2 class="section-title">Choisissez votre créneau<br/>en ligne</h2>
+  <p class="section-sub">Réservez directement votre rendez-vous d'estimation. Nous analysons, comparons aux ventes actées et construisons la stratégie de départ..</p>
+
+  <div class="calendly-wrapper">
+    <!-- Début de widget en ligne Calendly -->
+    <div class="calendly-inline-widget" data-url="https://calendly.com/baptiste-daphne-immo/estimation" style="min-width:320px;height:700px;"></div>
+    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+    <!-- Fin de widget en ligne Calendly -->
+  </div>
+</section>
+
+<!-- ═══ CONTACT BAR ═══ -->
+<div class="contact-bar">
+  <p>Vous préférez appeler ?</p>
+  <div class="sep"></div>
+  <a href="tel:0610327493">06 10 32 74 93</a>
+  <div class="sep"></div>
+  <p style="font-weight:400;opacity:.7">Rendez-vous offert, sans engagement.</p>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-logo">Baptiste &amp; Daphné <span>Immobilier</span></div>
+  <p>
+    EI Daphné MARTIN MARIN GUILLON, EI Baptiste AUDOUIN mandataires indépendants en immobilier (sans détention de fonds), agents commerciaux immatriculés au RSAC de Chambéry sous le n° 992 606 400, et n°943 392 555, RCP Verlingue n°127104506 60637 et n°127104506 titulaires de la carte de démarchage immobilier pour le compte de la société I@D France SAS au capital de 100 000 €, RCS Melun n°503 676 421, siège social au 1 allée de la Ferme de Varâtre – Immeuble Carré Haussmann III – 77127 Lieusaint, titulaire de la Carte Professionnelle de «Transaction sur immeubles et fonds de commerce» n° CPI 7702 2018 000 028 002 délivrée par la Chambre de Commerce et d’Industrie de Seine-et-Marne. Responsabilité civile professionnelle GENERALI IARD, 2 rue PILLET WILL –75009 Paris, garantie par la CEGC (Garantie Financière) 59 avenue Pierre Mendès-France – 75013 Paris (110 000 € sans manipulation de fonds) – Document d’information non contractuel – Conditions modifiables sans préavis. – Février 2026
+  </p>
+</footer>
+
+</body>
+</html>
