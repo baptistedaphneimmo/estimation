@@ -23,10 +23,28 @@
   border-radius: 16px;
   overflow: hidden;
 }
+a.about-badge { 
+  text-decoration: none; 
+  transition: opacity .2s, transform .2s;
+}
+a.about-badge:hover { 
+  opacity: .85; 
+  transform: translateY(-2px); 
+}
 
 .about-photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+}
+.calendly-wrapper { 
+  max-width: 900px; margin: 0 auto; border-radius: 16px; 
+  overflow: hidden; border: 1px solid rgba(200,151,58,.2); 
+  background: rgba(255,255,255,.02);
+  height: 80vh; /* occupe 80% de l'écran, fixe */
+}
+.calendly-inline-widget { 
+  height: 100% !important; 
+  min-width: 320px;
 }
