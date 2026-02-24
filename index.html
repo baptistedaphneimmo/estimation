@@ -141,6 +141,13 @@
     .profile-chip span { font-size: .75rem; color: var(--grey); }
 
     /* ── AVIS ── */
+    .carousel-outer { display: flex; align-items: center; gap: 1rem; margin-top: 3.5rem; }
+    .carousel-clip { overflow: hidden; flex: 1; }
+    .carousel-btn { background: rgba(255,255,255,.05); border: 1px solid rgba(200,151,58,.3); color: var(--gold); font-size: 1.2rem; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; flex-shrink: 0; transition: background .2s; display: flex; align-items: center; justify-content: center; }
+    .carousel-btn:hover { background: rgba(200,151,58,.15); }
+    .carousel-dots { display: flex; justify-content: center; gap: .5rem; margin-top: 1.5rem; }
+    .carousel-dots .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.2); cursor: pointer; transition: background .2s; }
+    .carousel-dots .dot.active { background: var(--gold); }
     .carousel-track {display: flex; flex-wrap: nowrap; gap: 1.5rem; transition: transform .4s ease;}
     .carousel-track .review-card {min-width: calc(33.333% - 1rem);  flex-shrink: 0}
     .review-card { background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 2rem; }
@@ -211,6 +218,7 @@
   .contact-bar .sep { display: none; }
   .calendly-inline-widget { height: 580px !important; }
   .calendly-wrapper { height: 580px; }
+  .carousel-track .review-card { min-width: 100%; }
 }
 
 @media (max-width: 600px) {
@@ -378,11 +386,10 @@
   <span class="section-label">Ce qu'ils en disent</span>
   <h2 class="section-title">Avis de nos clients</h2>
   <div class="divider"></div>
-
-  
-  <div class="carousel-wrapper">
-    <button class="carousel-btn prev" onclick="moveCarousel(-1)">&#8592;</button>
-    <div class="carousel-track-outer">
+ 
+  <div class="carousel-outer">
+    <button class="carousel-btn" onclick="moveCarousel(-1)">&#8592;</button>
+    <div class="carousel-clip">
       <div class="carousel-track" id="carouselTrack">
         
            <div class="review-card">
@@ -489,20 +496,18 @@
                 <span>⭐ Avis Google</span>
                </div>
                
-          </div>
+               </div>
               </div>
-              <button class="carousel-btn next" onclick="moveCarousel(1)">&#8594;</button>
+             <button class="carousel-btn" onclick="moveCarousel(1)">&#8594;</button>
             </div>
           
             <div class="carousel-dots" id="carouselDots"></div>
           
-            <div style="text-align:center; margin-top:2.5rem;">
-              <a href="https://www.google.com/search?client=firefox-b-d&hs=xQp9&sca_esv=2db205cac03e69c1&sxsrf=ANbL-n7kLimADijd22njqx1fYg8DkQYr4g:1771958111293&q=Baptiste+%26+Daphn%C3%A9+Immobilier+Chamb%C3%A9ry+Avis&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNDU1MrOwMLUwMbI0NTAyNLAwNtnAyPiKUccpsaAks7gkVUFNwSWxICPv8EoFz9zc_KTMnMzUIgXnjMTcpMMriyoVHMsyixexkqQcAAigoSV5AAAA&rldimm=15526885842950210834&tbm=lcl&hl=fr-FR&sa=X&ved=2ahUKEwi7_p6u4vKSAxXtNPsDHS9mJQAQ9fQKegQIRRAG&biw=637&bih=665&dpr=1.5#lkt=LocalPoiReviews" target="_blank" class="btn-outline">
-                Voir les +10 avis Google ↗
-              </a>
-              <p style="font-size:.8rem;color:rgba(255,255,255,.35);margin-top:.8rem">5/5 · 13 avis Google</p>
-            </div>
-          </section>
+   <div style="text-align:center;margin-top:2.5rem">
+    <a href="LIEN_GOOGLE_REVIEWS" target="_blank" class="btn-outline">Voir les 13 avis Google ↗</a>
+    <p style="font-size:.8rem;color:rgba(255,255,255,.35);margin-top:.8rem">4,9/5 · 13 avis vérifiés</p>
+  </div>
+</section>
 
 
 
@@ -574,39 +579,37 @@
     EI Daphné MARTIN MARIN GUILLON, EI Baptiste AUDOUIN mandataires indépendants en immobilier (sans détention de fonds), agents commerciaux immatriculés au RSAC de Chambéry sous le n° 992 606 400, et n°943 392 555, RCP Verlingue n°127104506 60637 et n°127104506 titulaires de la carte de démarchage immobilier pour le compte de la société I@D France SAS au capital de 100 000 €, RCS Melun n°503 676 421, siège social au 1 allée de la Ferme de Varâtre – Immeuble Carré Haussmann III – 77127 Lieusaint, titulaire de la Carte Professionnelle de «Transaction sur immeubles et fonds de commerce» n° CPI 7702 2018 000 028 002 délivrée par la Chambre de Commerce et d’Industrie de Seine-et-Marne. Responsabilité civile professionnelle GENERALI IARD, 2 rue PILLET WILL –75009 Paris, garantie par la CEGC (Garantie Financière) 59 avenue Pierre Mendès-France – 75013 Paris (110 000 € sans manipulation de fonds) – Document d’information non contractuel – Conditions modifiables sans préavis. – Février 2026
   </p>
 </footer>
+               
 <script>
   const track = document.getElementById('carouselTrack');
-  const cards = track.querySelectorAll('.review-card');
-  const dotsContainer = document.getElementById('carouselDots');
+  const dotsEl = document.getElementById('carouselDots');
   let current = 0;
-  let perView = window.innerWidth <= 768 ? 1 : 3;
 
-  // Créer les dots
-  const totalSlides = Math.ceil(cards.length / perView);
-  for (let i = 0; i < totalSlides; i++) {
-    const dot = document.createElement('div');
-    dot.classList.add('dot');
-    if (i === 0) dot.classList.add('active');
-    dot.addEventListener('click', () => goTo(i));
-    dotsContainer.appendChild(dot);
+  function perView() { return window.innerWidth <= 768 ? 1 : 3; }
+
+  function buildDots() {
+    dotsEl.innerHTML = '';
+    const total = Math.ceil(track.children.length / perView());
+    for (let i = 0; i < total; i++) {
+      const d = document.createElement('div');
+      d.className = 'dot' + (i === 0 ? ' active' : '');
+      d.onclick = () => goTo(i);
+      dotsEl.appendChild(d);
+    }
   }
 
-  function goTo(index) {
-    const maxIndex = totalSlides - 1;
-    current = Math.max(0, Math.min(index, maxIndex));
-    const cardWidth = cards[0].offsetWidth + 24; // gap
-    track.style.transform = `translateX(-${current * cardWidth * perView}px)`;
-    document.querySelectorAll('.carousel-dots .dot').forEach((d, i) => {
-      d.classList.toggle('active', i === current);
-    });
+  function goTo(i) {
+    const total = Math.ceil(track.children.length / perView());
+    current = Math.max(0, Math.min(i, total - 1));
+    const w = track.children[0].offsetWidth + 24;
+    track.style.transform = `translateX(-${current * w * perView()}px)`;
+    document.querySelectorAll('.dot').forEach((d, j) => d.classList.toggle('active', j === current));
   }
 
   function moveCarousel(dir) { goTo(current + dir); }
 
-  window.addEventListener('resize', () => {
-    perView = window.innerWidth <= 768 ? 1 : 3;
-    goTo(0);
-  });
+  buildDots();
+  window.addEventListener('resize', () => { buildDots(); goTo(0); });
 </script>
 </body>
 </html>
