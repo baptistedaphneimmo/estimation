@@ -821,7 +821,7 @@ input:disabled + .slider { cursor: not-allowed; opacity: .5; }
 -- ── SCRIPT ── -->
 <script>
   var CONSENT_KEY     = 'bd_cookie_consent';
-  var APPS_SCRIPT_URL = 'VOTRE_URL_ICI'; // ← remplacez par votre URL Apps Script
+  var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzvEu-nXBuLkj7rLiCYmtCUS2yCV5VCQMn2boVfl0GgJ7OJB0RIKnTLN3oVka283qwTQw/exec'; // ← remplacez par votre URL Apps Script
 
   function getSessionId() {
     var sid = sessionStorage.getItem('bd_sid');
@@ -849,7 +849,7 @@ input:disabled + .slider { cursor: not-allowed; opacity: .5; }
   }
 
   function logToSheet(prefs, decision) {
-    if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'VOTRE_URL_ICI') return;
+    if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbzvEu-nXBuLkj7rLiCYmtCUS2yCV5VCQMn2boVfl0GgJ7OJB0RIKnTLN3oVka283qwTQw/exec') return;
     fetch(APPS_SCRIPT_URL, { method: 'POST', body: JSON.stringify({
       sessionId: getSessionId(), analytics: prefs.analytics,
       ads: prefs.ads, clarity: prefs.clarity,
