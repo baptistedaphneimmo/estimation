@@ -188,6 +188,24 @@
     .footer-links a { font-size: .75rem; color: var(--grey); text-decoration: none; transition: color .2s; }
     .footer-links a:hover { color: var(--gold); }
 
+    #cookie-banner {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
+  background: #162240; border-top: 1px solid rgba(200,151,58,.3);
+  padding: 1.4rem 5%; display: flex; align-items: center;
+  justify-content: space-between; gap: 1.5rem; flex-wrap: wrap;
+  box-shadow: 0 -8px 32px rgba(0,0,0,.4);
+  transform: translateY(0); transition: transform .4s ease;
+}
+#cookie-banner.hidden { transform: translateY(110%); }
+.banner-text { flex: 1; min-width: 260px; }
+.banner-text strong { display: block; font-size: .95rem; margin-bottom: .3rem; }
+.banner-text p { font-size: .8rem; color: rgba(255,255,255,.55); line-height: 1.6; }
+.banner-text a { color: #c9a96e; text-decoration: none; }
+.banner-actions { display: flex; gap: .7rem; flex-wrap: wrap; align-items: center; }
+.banner-btn-accept { background: #c9a96e; color: #1B2B4B; font-weight: 700; font-size: .85rem; padding: .65rem 1.4rem; border-radius: 4px; border: none; cursor: pointer; font-family: 'Montserrat', sans-serif; }
+.banner-btn-refuse { background: transparent; color: rgba(255,255,255,.6); font-size: .85rem; padding: .65rem 1.2rem; border-radius: 4px; border: 1px solid rgba(255,255,255,.2); cursor: pointer; font-family: 'Montserrat', sans-serif; }
+.banner-btn-custom { background: transparent; color: #c9a96e; font-size: .85rem; padding: .65rem 1.2rem; border-radius: 4px; border: 1px solid rgba(200,151,58,.35); cursor: pointer; font-family: 'Montserrat', sans-serif; }
+
     /* ── ANIMATIONS ── */
     @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -240,79 +258,7 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
 
-  
-  <div id="cookie-banner" class="hidden">
-  <div class="banner-text">
-    <strong>🍪 Ce site utilise des cookies</strong>
-    <p>Nous utilisons Google Analytics, Google Ads et Microsoft Clarity pour analyser l'audience et améliorer le site. <a href="gestiondescookies.html">En savoir plus</a></p>
-  </div>
-  <div class="banner-actions">
-    <button class="banner-btn-accept" onclick="bannerAccept()">Tout accepter</button>
-    <button class="banner-btn-refuse" onclick="bannerRefuse()">Tout refuser</button>
-    <button class="banner-btn-custom" onclick="window.location.href='cookies.html'">Personnaliser</button>
-  </div>
 
-<script>
-  const CONSENT_KEY = 'bd_cookie_consent';
-  const APPS_SCRIPT_URL = 'VOTRE_URL_ICI';
-
-  function getSessionId() {
-    var sid = sessionStorage.getItem('bd_sid');
-    if (!sid) { sid = 'u_' + Date.now() + '_' + Math.random().toString(36).substr(2,8); sessionStorage.setItem('bd_sid', sid); }
-    return sid;
-  }
-
-  function activateAnalytics() {
-    var s = document.createElement('script');
-    s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-17870834052';
-    s.async = true;
-    document.head.appendChild(s);
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = function(){ dataLayer.push(arguments); };
-    gtag('js', new Date());
-    gtag('config', 'AW-17870834052');
-  }
-
-  function activateClarity() {
-    (function(c,l,a,r,i,t,y){
-      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window,document,"clarity","script","vnvyypfvt5");
-  }
-
-  function applyAndLog(prefs, decision) {
-    localStorage.setItem(CONSENT_KEY, JSON.stringify({ ...prefs, ts: Date.now() }));
-    if (prefs.analytics || prefs.ads) activateAnalytics();
-    if (prefs.clarity) activateClarity();
-    if (APPS_SCRIPT_URL !== 'VOTRE_URL_ICI') {
-      fetch(APPS_SCRIPT_URL, { method: 'POST', body: JSON.stringify({
-        sessionId: getSessionId(), analytics: prefs.analytics,
-        ads: prefs.ads, clarity: prefs.clarity,
-        policyVersion: 'v1', page: window.location.pathname, decision: decision
-      })}).catch(function(){});
-    }
-  }
-
-  function bannerAccept() {
-    applyAndLog({ analytics: true, ads: true, clarity: true }, 'accept_all');
-    hideBanner();
-  }
-  function bannerRefuse() {
-    applyAndLog({ analytics: false, ads: false, clarity: false }, 'refuse_all');
-    hideBanner();
-  }
-  function hideBanner() { document.getElementById('cookie-banner').classList.add('hidden'); }
-
-  // Init au chargement
-  (function(){
-    try {
-      var saved = JSON.parse(localStorage.getItem(CONSENT_KEY));
-      if (saved) { applyAndLog(saved, 'returning'); return; }
-    } catch(e) {}
-    setTimeout(function(){ document.getElementById('cookie-banner').classList.remove('hidden'); }, 800);
-  })();
-</script>
 
     
 </div>
@@ -637,11 +583,16 @@
 
 <!-- ═══ FOOTER ═══ -->
 <footer>
-  <div class="footer-logo">Baptiste &amp; Daphné <span>Immobilier</span></div>
-  <p>
-    EI Daphné MARTIN MARIN GUILLON, EI Baptiste AUDOUIN mandataires indépendants en immobilier (sans détention de fonds), agents commerciaux immatriculés au RSAC de Chambéry sous le n° 992 606 400, et n°943 392 555, RCP Verlingue n°127104506 60637 et n°127104506 titulaires de la carte de démarchage immobilier pour le compte de la société I@D France SAS au capital de 100 000 €, RCS Melun n°503 676 421, siège social au 1 allée de la Ferme de Varâtre – Immeuble Carré Haussmann III – 77127 Lieusaint, titulaire de la Carte Professionnelle de «Transaction sur immeubles et fonds de commerce» n° CPI 7702 2018 000 028 002 délivrée par la Chambre de Commerce et d’Industrie de Seine-et-Marne. Responsabilité civile professionnelle GENERALI IARD, 2 rue PILLET WILL –75009 Paris, garantie par la CEGC (Garantie Financière) 59 avenue Pierre Mendès-France – 75013 Paris (110 000 € sans manipulation de fonds) – Document d’information non contractuel – Conditions modifiables sans préavis. – Février 2026
-  </p>
-</footer>
+  <div>
+    <div class="footer-logo">Baptiste &amp; Daphné <span>Immobilier</span></div>
+    <div class="footer-links" style="margin-top:.8rem">
+      <a href="mentionslegales.html">Mentions légales</a>
+      <a href="politiquedeconfidentialite.html">Confidentialité</a>
+      <a href="gestiondescookies.html">Cookies</a>
+    </div>
+  </div>
+  <p>EI Daphné MARTIN MARIN GUILLON, EI Baptiste AUDOUIN — mandataires indépendants IAD France — RSAC Chambéry n° 992 606 400 et n° 943 392 555 — Document non contractuel — Février 2026</p>
+</footer>>
                
 <script>
   const track = document.getElementById('carouselTrack');
@@ -674,10 +625,79 @@
   buildDots();
   window.addEventListener('resize', () => { buildDots(); goTo(0); });
 </script>
+  
+  <div id="cookie-banner" class="hidden">
+  <div class="banner-text">
+    <strong>🍪 Ce site utilise des cookies</strong>
+    <p>Nous utilisons Google Analytics, Google Ads et Microsoft Clarity pour analyser l'audience et améliorer le site. <a href="gestiondescookies.html">En savoir plus</a></p>
+  </div>
+  <div class="banner-actions">
+    <button class="banner-btn-accept" onclick="bannerAccept()">Tout accepter</button>
+    <button class="banner-btn-refuse" onclick="bannerRefuse()">Tout refuser</button>
+    <button class="banner-btn-custom" onclick="window.location.href='cookies.html'">Personnaliser</button>
+  </div>
+
+<script>
+  const CONSENT_KEY = 'bd_cookie_consent';
+  const APPS_SCRIPT_URL = 'VOTRE_URL_ICI';
+
+  function getSessionId() {
+    var sid = sessionStorage.getItem('bd_sid');
+    if (!sid) { sid = 'u_' + Date.now() + '_' + Math.random().toString(36).substr(2,8); sessionStorage.setItem('bd_sid', sid); }
+    return sid;
+  }
+
+  function activateAnalytics() {
+    var s = document.createElement('script');
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-17870834052';
+    s.async = true;
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function(){ dataLayer.push(arguments); };
+    gtag('js', new Date());
+    gtag('config', 'AW-17870834052');
+  }
+
+  function activateClarity() {
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window,document,"clarity","script","vnvyypfvt5");
+  }
+
+  function applyAndLog(prefs, decision) {
+    localStorage.setItem(CONSENT_KEY, JSON.stringify({ ...prefs, ts: Date.now() }));
+    if (prefs.analytics || prefs.ads) activateAnalytics();
+    if (prefs.clarity) activateClarity();
+    if (APPS_SCRIPT_URL !== 'VOTRE_URL_ICI') {
+      fetch(APPS_SCRIPT_URL, { method: 'POST', body: JSON.stringify({
+        sessionId: getSessionId(), analytics: prefs.analytics,
+        ads: prefs.ads, clarity: prefs.clarity,
+        policyVersion: 'v1', page: window.location.pathname, decision: decision
+      })}).catch(function(){});
+    }
+  }
+
+  function bannerAccept() {
+    applyAndLog({ analytics: true, ads: true, clarity: true }, 'accept_all');
+    hideBanner();
+  }
+  function bannerRefuse() {
+    applyAndLog({ analytics: false, ads: false, clarity: false }, 'refuse_all');
+    hideBanner();
+  }
+  function hideBanner() { document.getElementById('cookie-banner').classList.add('hidden'); }
+
+  // Init au chargement
+  (function(){
+    try {
+      var saved = JSON.parse(localStorage.getItem(CONSENT_KEY));
+      if (saved) { applyAndLog(saved, 'returning'); return; }
+    } catch(e) {}
+    setTimeout(function(){ document.getElementById('cookie-banner').classList.remove('hidden'); }, 800);
+  })();
+</script>
+  
 </body>
-  <footer>
-    <a href="mentionslegales.html">Mentions légales</a> · 
-    <a href="politiquedeconfidentialite.html">Confidentialité</a> · 
-    <a href="gestiondescookies.html">Cookies</a>
-  </footer>
 </html>
