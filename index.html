@@ -259,6 +259,69 @@
     <button class="banner-btn-refuse" onclick="bannerRefuse()">Tout refuser</button>
     <button class="banner-btn-custom" onclick="window.location.href='cookies.html'">Personnaliser</button>
   </div>
+
+<script>
+  const CONSENT_KEY = 'bd_cookie_consent';
+  const APPS_SCRIPT_URL = 'VOTRE_URL_ICI';
+
+  function getSessionId() {
+    var sid = sessionStorage.getItem('bd_sid');
+    if (!sid) { sid = 'u_' + Date.now() + '_' + Math.random().toString(36).substr(2,8); sessionStorage.setItem('bd_sid', sid); }
+    return sid;
+  }
+
+  function activateAnalytics() {
+    var s = document.createElement('script');
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-17870834052';
+    s.async = true;
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function(){ dataLayer.push(arguments); };
+    gtag('js', new Date());
+    gtag('config', 'AW-17870834052');
+  }
+
+  function activateClarity() {
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window,document,"clarity","script","vnvyypfvt5");
+  }
+
+  function applyAndLog(prefs, decision) {
+    localStorage.setItem(CONSENT_KEY, JSON.stringify({ ...prefs, ts: Date.now() }));
+    if (prefs.analytics || prefs.ads) activateAnalytics();
+    if (prefs.clarity) activateClarity();
+    if (APPS_SCRIPT_URL !== 'VOTRE_URL_ICI') {
+      fetch(APPS_SCRIPT_URL, { method: 'POST', body: JSON.stringify({
+        sessionId: getSessionId(), analytics: prefs.analytics,
+        ads: prefs.ads, clarity: prefs.clarity,
+        policyVersion: 'v1', page: window.location.pathname, decision: decision
+      })}).catch(function(){});
+    }
+  }
+
+  function bannerAccept() {
+    applyAndLog({ analytics: true, ads: true, clarity: true }, 'accept_all');
+    hideBanner();
+  }
+  function bannerRefuse() {
+    applyAndLog({ analytics: false, ads: false, clarity: false }, 'refuse_all');
+    hideBanner();
+  }
+  function hideBanner() { document.getElementById('cookie-banner').classList.add('hidden'); }
+
+  // Init au chargement
+  (function(){
+    try {
+      var saved = JSON.parse(localStorage.getItem(CONSENT_KEY));
+      if (saved) { applyAndLog(saved, 'returning'); return; }
+    } catch(e) {}
+    setTimeout(function(){ document.getElementById('cookie-banner').classList.remove('hidden'); }, 800);
+  })();
+</script>
+
     
 </div>
 </head>
