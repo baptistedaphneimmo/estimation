@@ -731,39 +731,52 @@
   window.addEventListener('resize', () => { buildDots(); goTo(0); });
 </script>
   
-  <div id="cookie-banner" class="hidden">
-  <div class="banner-text">
-    <strong>🍪 Ce site utilise des cookies</strong>
-    <p>Nous utilisons Google Analytics, Google Ads et Microsoft Clarity pour analyser l'audience et améliorer le site. <a href="gestiondescookies.html">En savoir plus</a></p>
+ <div id="cookie-banner">
+  <div class="banner-left">
+    <span class="banner-icon">🍪</span>
+    <strong>Ce site utilise des cookies</strong>
+    <p>
+      En acceptant, vous nous aidez à <em>mieux comprendre ce qui vous intéresse</em>
+      et à améliorer notre site. Vos données restent anonymes.
+      <a href="gestiondescookies.html">Gérer mes choix</a>
+    </p>
   </div>
-  <div class="banner-actions">
-    <button class="banner-btn-accept" onclick="bannerAccept()">Tout accepter</button>
-    <button class="banner-btn-refuse" onclick="bannerRefuse()">Tout refuser</button>
-    <button class="banner-btn-custom" onclick="window.location.href='gestiondescookies.html'">Personnaliser</button>
+  <div class="banner-right">
+    <div class="banner-btns-row">
+      <button class="btn-banner-refuse" onclick="bannerRefuse()">Refuser</button>
+      <button class="btn-banner-accept" onclick="bannerAccept()">Tout accepter ✓</button>
+    </div>
+    <span class="banner-reassurance">Vous pouvez changer d'avis à tout moment</span>
+    <button class="btn-banner-custom" onclick="window.location.href='gestiondescookies.html'">Personnaliser les cookies</button>
   </div>
+</div>
 
+!-- ── SCRIPT (juste après le bandeau, avant </body>) ── -->
 <script>
-  const CONSENT_KEY = 'bd_cookie_consent';
-  const APPS_SCRIPT_URL = 'VOTRE_URL_ICI';
+  const CONSENT_KEY    = 'bd_cookie_consent';
+  const APPS_SCRIPT_URL = 'VOTRE_URL_ICI'; // ← remplacez par votre URL Apps Script
 
   function getSessionId() {
     var sid = sessionStorage.getItem('bd_sid');
-    if (!sid) { sid = 'u_' + Date.now() + '_' + Math.random().toString(36).substr(2,8); sessionStorage.setItem('bd_sid', sid); }
+    if (!sid) {
+      sid = 'u_' + Date.now() + '_' + Math.random().toString(36).substr(2,8);
+      sessionStorage.setItem('bd_sid', sid);
+    }
     return sid;
   }
 
   function activateAnalytics() {
+    if (window._gaLoaded) return; window._gaLoaded = true;
     var s = document.createElement('script');
     s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-17870834052';
-    s.async = true;
-    document.head.appendChild(s);
+    s.async = true; document.head.appendChild(s);
     window.dataLayer = window.dataLayer || [];
     window.gtag = function(){ dataLayer.push(arguments); };
-    gtag('js', new Date());
-    gtag('config', 'AW-17870834052');
+    gtag('js', new Date()); gtag('config', 'AW-17870834052');
   }
 
   function activateClarity() {
+    if (window._clarityLoaded) return; window._clarityLoaded = true;
     (function(c,l,a,r,i,t,y){
       c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
       t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
@@ -771,17 +784,23 @@
     })(window,document,"clarity","script","vnvyypfvt5");
   }
 
+  function logToSheet(prefs, decision) {
+    if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'VOTRE_URL_ICI') return;
+    fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify({
+        sessionId: getSessionId(), analytics: prefs.analytics,
+        ads: prefs.ads, clarity: prefs.clarity,
+        policyVersion: 'v1', page: window.location.pathname, decision: decision
+      })
+    }).catch(function(){});
+  }
+
   function applyAndLog(prefs, decision) {
     localStorage.setItem(CONSENT_KEY, JSON.stringify({ ...prefs, ts: Date.now() }));
     if (prefs.analytics || prefs.ads) activateAnalytics();
     if (prefs.clarity) activateClarity();
-    if (APPS_SCRIPT_URL !== 'VOTRE_URL_ICI') {
-      fetch(APPS_SCRIPT_URL, { method: 'POST', body: JSON.stringify({
-        sessionId: getSessionId(), analytics: prefs.analytics,
-        ads: prefs.ads, clarity: prefs.clarity,
-        policyVersion: 'v1', page: window.location.pathname, decision: decision
-      })}).catch(function(){});
-    }
+    logToSheet(prefs, decision);
   }
 
   function bannerAccept() {
@@ -792,15 +811,19 @@
     applyAndLog({ analytics: false, ads: false, clarity: false }, 'refuse_all');
     hideBanner();
   }
-  function hideBanner() { document.getElementById('cookie-banner').classList.add('hidden'); }
+  function hideBanner() {
+    document.getElementById('cookie-banner').classList.remove('visible');
+  }
 
-  // Init au chargement
+  // Init
   (function(){
     try {
       var saved = JSON.parse(localStorage.getItem(CONSENT_KEY));
       if (saved) { applyAndLog(saved, 'returning'); return; }
     } catch(e) {}
-    setTimeout(function(){ document.getElementById('cookie-banner').classList.remove('hidden'); }, 800);
+    setTimeout(function(){
+      document.getElementById('cookie-banner').classList.add('visible');
+    }, 1200);
   })();
 </script>
   
