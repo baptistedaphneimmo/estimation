@@ -188,23 +188,148 @@
     .footer-links a { font-size: .75rem; color: var(--grey); text-decoration: none; transition: color .2s; }
     .footer-links a:hover { color: var(--gold); }
 
-    #cookie-banner {
+/* ── BANDEAU COOKIES ── */
+#cookie-banner {
   position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
-  background: #162240; border-top: 1px solid rgba(200,151,58,.3);
-  padding: 1.4rem 5%; display: flex; align-items: center;
-  justify-content: space-between; gap: 1.5rem; flex-wrap: wrap;
-  box-shadow: 0 -8px 32px rgba(0,0,0,.4);
-  transform: translateY(0); transition: transform .4s ease;
+  background: linear-gradient(135deg, #0d1a30 0%, #162240 100%);
+  border-top: 1px solid rgba(201,169,110,.35);
+  box-shadow: 0 -12px 48px rgba(0,0,0,.6);
+  transform: translateY(110%);
+  transition: transform .5s cubic-bezier(.22,1,.36,1);
+  font-family: 'Montserrat', sans-serif;
 }
-#cookie-banner.hidden { transform: translateY(110%); }
-.banner-text { flex: 1; min-width: 260px; }
-.banner-text strong { display: block; font-size: .95rem; margin-bottom: .3rem; }
-.banner-text p { font-size: .8rem; color: rgba(255,255,255,.55); line-height: 1.6; }
-.banner-text a { color: #c9a96e; text-decoration: none; }
-.banner-actions { display: flex; gap: .7rem; flex-wrap: wrap; align-items: center; }
-.banner-btn-accept { background: #c9a96e; color: #1B2B4B; font-weight: 700; font-size: .85rem; padding: .65rem 1.4rem; border-radius: 4px; border: none; cursor: pointer; font-family: 'Montserrat', sans-serif; }
-.banner-btn-refuse { background: transparent; color: rgba(255,255,255,.6); font-size: .85rem; padding: .65rem 1.2rem; border-radius: 4px; border: 1px solid rgba(255,255,255,.2); cursor: pointer; font-family: 'Montserrat', sans-serif; }
-.banner-btn-custom { background: transparent; color: #c9a96e; font-size: .85rem; padding: .65rem 1.2rem; border-radius: 4px; border: 1px solid rgba(200,151,58,.35); cursor: pointer; font-family: 'Montserrat', sans-serif; }
+#cookie-banner.visible { transform: translateY(0); }
+
+/* ── VUE PRINCIPALE ── */
+#banner-main {
+  padding: 1.6rem 5%;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 2rem; flex-wrap: wrap;
+}
+.banner-left { flex: 1; min-width: 240px; }
+.banner-left strong { display: block; font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: .4rem; }
+.banner-left p { font-size: .78rem; color: rgba(255,255,255,.5); line-height: 1.6; margin: 0; }
+.banner-left p em { font-style: normal; color: rgba(255,255,255,.75); font-weight: 500; }
+.banner-left p a { color: #c9a96e; text-decoration: none; }
+
+.banner-right { display: flex; flex-direction: column; align-items: flex-end; gap: .6rem; flex-shrink: 0; }
+.banner-btns-row { display: flex; gap: .7rem; align-items: center; }
+
+.btn-banner-accept {
+  background: linear-gradient(135deg, #d4b06a 0%, #c9a96e 60%, #b8954f 100%);
+  color: #1B2B4B; font-family: 'Montserrat', sans-serif;
+  font-weight: 800; font-size: .88rem; letter-spacing: .04em;
+  padding: .75rem 1.8rem; border-radius: 6px; border: none; cursor: pointer;
+  box-shadow: 0 4px 18px rgba(201,169,110,.35);
+  transition: box-shadow .2s, transform .2s, filter .2s; white-space: nowrap;
+}
+.btn-banner-accept:hover { box-shadow: 0 6px 28px rgba(201,169,110,.55); transform: translateY(-1px); filter: brightness(1.07); }
+
+.btn-banner-refuse {
+  background: transparent; color: rgba(255,255,255,.45);
+  font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: .88rem;
+  padding: .75rem 1.2rem; border-radius: 6px; border: 1px solid rgba(255,255,255,.15);
+  cursor: pointer; transition: color .2s, border-color .2s; white-space: nowrap;
+}
+.btn-banner-refuse:hover { color: rgba(255,255,255,.75); border-color: rgba(255,255,255,.3); }
+
+.btn-banner-custom {
+  background: none; border: none; cursor: pointer; font-family: 'Montserrat', sans-serif;
+  font-size: .72rem; color: rgba(255,255,255,.3);
+  text-decoration: underline; text-underline-offset: 3px;
+  padding: 0; transition: color .2s;
+}
+.btn-banner-custom:hover { color: rgba(255,255,255,.55); }
+.banner-reassurance { font-size: .68rem; color: rgba(255,255,255,.2); text-align: right; }
+
+/* ── VUE PERSONNALISATION ── */
+#banner-custom {
+  display: none;
+  padding: 1.6rem 5% 1.4rem;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+#banner-custom.open { display: block; }
+
+.custom-title {
+  font-size: .8rem; font-weight: 700; color: #c9a96e;
+  letter-spacing: .12em; text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.custom-rows { display: flex; gap: .8rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
+
+.custom-row {
+  flex: 1; min-width: 180px;
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 8px; padding: .9rem 1rem;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: .8rem; transition: border-color .2s;
+}
+.custom-row:hover { border-color: rgba(201,169,110,.25); }
+.custom-row.required { opacity: .6; }
+
+.custom-row-info { flex: 1; }
+.custom-row-info strong { display: block; font-size: .8rem; color: #fff; margin-bottom: .15rem; }
+.custom-row-info span { font-size: .7rem; color: rgba(255,255,255,.35); line-height: 1.4; }
+
+/* Toggle */
+.toggle { position: relative; width: 40px; height: 22px; flex-shrink: 0; }
+.toggle input { opacity: 0; width: 0; height: 0; }
+.slider {
+  position: absolute; cursor: pointer; inset: 0;
+  background: rgba(255,255,255,.12); border-radius: 22px; transition: background .3s;
+}
+.slider::before {
+  content: ''; position: absolute; width: 16px; height: 16px;
+  left: 3px; bottom: 3px; background: #fff;
+  border-radius: 50%; transition: transform .3s;
+}
+input:checked + .slider { background: #c9a96e; }
+input:checked + .slider::before { transform: translateX(18px); }
+input:disabled + .slider { cursor: not-allowed; opacity: .5; }
+
+/* Boutons panneau custom */
+.custom-actions { display: flex; gap: .7rem; align-items: center; flex-wrap: wrap; }
+
+.btn-save-custom {
+  background: linear-gradient(135deg, #d4b06a, #c9a96e);
+  color: #1B2B4B; font-family: 'Montserrat', sans-serif;
+  font-weight: 800; font-size: .85rem;
+  padding: .65rem 1.6rem; border-radius: 6px; border: none; cursor: pointer;
+  box-shadow: 0 4px 14px rgba(201,169,110,.3);
+  transition: box-shadow .2s, transform .2s;
+}
+.btn-save-custom:hover { box-shadow: 0 6px 22px rgba(201,169,110,.5); transform: translateY(-1px); }
+
+.btn-back-banner {
+  background: transparent; color: rgba(255,255,255,.4);
+  font-family: 'Montserrat', sans-serif; font-size: .78rem;
+  border: none; cursor: pointer; padding: 0;
+  text-decoration: underline; text-underline-offset: 3px;
+  transition: color .2s;
+}
+.btn-back-banner:hover { color: rgba(255,255,255,.7); }
+
+.btn-refuse-all-custom {
+  background: transparent; color: rgba(255,255,255,.35);
+  font-family: 'Montserrat', sans-serif; font-size: .78rem;
+  border: 1px solid rgba(255,255,255,.12); border-radius: 4px;
+  cursor: pointer; padding: .5rem .9rem; transition: color .2s, border-color .2s;
+  margin-left: auto;
+}
+.btn-refuse-all-custom:hover { color: rgba(255,255,255,.6); border-color: rgba(255,255,255,.25); }
+
+@media (max-width: 640px) {
+  #banner-main { flex-direction: column; align-items: flex-start; }
+  .banner-right { align-items: flex-start; width: 100%; }
+  .banner-btns-row { width: 100%; }
+  .btn-banner-accept, .btn-banner-refuse { flex: 1; text-align: center; }
+  .banner-reassurance { text-align: left; }
+  .custom-rows { flex-direction: column; }
+  .custom-actions { flex-direction: column; align-items: flex-start; }
+  .btn-refuse-all-custom { margin-left: 0; }
+}
 
     /* ── ANIMATIONS ── */
     @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
@@ -249,112 +374,6 @@
   .calendly-wrapper { height: 520px; }
   .nav-cta {  font-size: .75rem; padding: .4rem .8rem; white-space: nowrap;}
 }
-
-    #cookie-banner {
-  position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
-  background: linear-gradient(135deg, #0d1a30 0%, #162240 100%);
-  border-top: 1px solid rgba(201,169,110,.35);
-  box-shadow: 0 -12px 48px rgba(0,0,0,.6);
-  transform: translateY(110%);
-  transition: transform .5s cubic-bezier(.22,1,.36,1);
-  padding: 1.6rem 5%;
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 2rem; flex-wrap: wrap;
-}
-#cookie-banner.visible { transform: translateY(0); }
-
-.banner-left { flex: 1; min-width: 240px; }
-
-.banner-left .banner-icon {
-  font-size: 1.4rem; margin-bottom: .4rem; display: block;
-}
-.banner-left strong {
-  display: block; font-size: 1rem; font-weight: 700;
-  color: #fff; margin-bottom: .4rem; letter-spacing: .01em;
-}
-.banner-left p {
-  font-size: .78rem; color: rgba(255,255,255,.5); line-height: 1.6; margin: 0;
-}
-.banner-left p a { color: #c9a96e; text-decoration: none; }
-.banner-left p a:hover { text-decoration: underline; }
-
-/* ── Highlight "analyser" pour valoriser l'intérêt du visiteur ── */
-.banner-left p em {
-  font-style: normal; color: rgba(255,255,255,.75); font-weight: 500;
-}
-
-.banner-right {
-  display: flex; flex-direction: column; align-items: flex-end;
-  gap: .6rem; flex-shrink: 0;
-}
-
-/* ── Boutons principaux ── */
-.banner-btns-row {
-  display: flex; gap: .7rem; align-items: center;
-}
-
-/* ACCEPTER — plein, doré, lumineux, légèrement plus grand */
-.btn-banner-accept {
-  background: linear-gradient(135deg, #d4b06a 0%, #c9a96e 60%, #b8954f 100%);
-  color: #1B2B4B;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 800; font-size: .88rem; letter-spacing: .04em;
-  padding: .75rem 1.8rem;
-  border-radius: 6px; border: none; cursor: pointer;
-  box-shadow: 0 4px 18px rgba(201,169,110,.35);
-  transition: box-shadow .2s, transform .2s, filter .2s;
-  white-space: nowrap;
-}
-.btn-banner-accept:hover {
-  box-shadow: 0 6px 28px rgba(201,169,110,.55);
-  transform: translateY(-1px);
-  filter: brightness(1.07);
-}
-
-/* REFUSER — outline sobre, même taille (obligation CNIL) */
-.btn-banner-refuse {
-  background: transparent;
-  color: rgba(255,255,255,.45);
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 500; font-size: .88rem;
-  padding: .75rem 1.2rem;
-  border-radius: 6px;
-  border: 1px solid rgba(255,255,255,.15);
-  cursor: pointer;
-  transition: color .2s, border-color .2s;
-  white-space: nowrap;
-}
-.btn-banner-refuse:hover {
-  color: rgba(255,255,255,.75);
-  border-color: rgba(255,255,255,.3);
-}
-
-/* PERSONNALISER — lien texte discret en dessous */
-.btn-banner-custom {
-  background: none; border: none; cursor: pointer;
-  font-family: 'Montserrat', sans-serif;
-  font-size: .72rem; color: rgba(255,255,255,.3);
-  text-decoration: underline; text-underline-offset: 3px;
-  padding: 0; transition: color .2s;
-  align-self: center;
-}
-.btn-banner-custom:hover { color: rgba(255,255,255,.55); }
-
-/* ── Petit texte de réassurance sous les boutons ── */
-.banner-reassurance {
-  font-size: .68rem; color: rgba(255,255,255,.2);
-  text-align: right; line-height: 1.4;
-}
-
-@media (max-width: 640px) {
-  #cookie-banner { flex-direction: column; align-items: flex-start; padding: 1.4rem 5%; }
-  .banner-right { align-items: flex-start; width: 100%; }
-  .banner-btns-row { width: 100%; }
-  .btn-banner-accept { flex: 1; text-align: center; }
-  .btn-banner-refuse { flex: 1; text-align: center; }
-  .banner-reassurance { text-align: left; }
-}
-  </style>
 
 
   <!-- ═══ FAVICON ═══ -->
@@ -731,45 +750,90 @@
   window.addEventListener('resize', () => { buildDots(); goTo(0); });
 </script>
   
- <div id="cookie-banner">
-  <div class="banner-left">
-    <span class="banner-icon">🍪</span>
-    <strong>Ce site utilise des cookies</strong>
-    <p>
-      En acceptant, vous nous aidez à <em>mieux comprendre ce qui vous intéresse</em>
-      et à améliorer notre site. Vos données restent anonymes.
-      <a href="gestiondescookies.html">Gérer mes choix</a>
-    </p>
-  </div>
-  <div class="banner-right">
-    <div class="banner-btns-row">
-      <button class="btn-banner-refuse" onclick="bannerRefuse()">Refuser</button>
-      <button class="btn-banner-accept" onclick="bannerAccept()">Tout accepter ✓</button>
+ ── HTML ── -->
+<div id="cookie-banner">
+
+  <!-- Vue principale -->
+  <div id="banner-main">
+    <div class="banner-left">
+      <strong>🍪 Ce site utilise des cookies</strong>
+      <p>En acceptant, vous nous aidez à <em>mieux comprendre ce qui vous intéresse</em> et à améliorer notre site. Vos données restent anonymes.</p>
     </div>
-    <span class="banner-reassurance">Vous pouvez changer d'avis à tout moment</span>
-    <button class="btn-banner-custom" onclick="window.location.href='gestiondescookies.html'">Personnaliser les cookies</button>
+    <div class="banner-right">
+      <div class="banner-btns-row">
+        <button class="btn-banner-refuse" onclick="bannerRefuse()">Refuser</button>
+        <button class="btn-banner-accept" onclick="bannerAccept()">Tout accepter ✓</button>
+      </div>
+      <span class="banner-reassurance">Vous pouvez changer d'avis à tout moment</span>
+      <button class="btn-banner-custom" onclick="openCustom()">⚙ Personnaliser les cookies</button>
+    </div>
+  </div>
+
+  <!-- Vue personnalisation (cachée par défaut) -->
+  <div id="banner-custom">
+    <div class="custom-title">⚙ Personnaliser mes préférences</div>
+
+    <div class="custom-rows">
+
+      <div class="custom-row required">
+        <div class="custom-row-info">
+          <strong>🔒 Essentiels</strong>
+          <span>Nécessaires au fonctionnement du site. Toujours actifs.</span>
+        </div>
+        <label class="toggle"><input type="checkbox" checked disabled><span class="slider"></span></label>
+      </div>
+
+      <div class="custom-row">
+        <div class="custom-row-info">
+          <strong>📊 Google Analytics</strong>
+          <span>Mesure d'audience anonymisée — pages vues, durée de visite.</span>
+        </div>
+        <label class="toggle"><input type="checkbox" id="c-ga"><span class="slider"></span></label>
+      </div>
+
+      <div class="custom-row">
+        <div class="custom-row-info">
+          <strong>📣 Google Ads</strong>
+          <span>Suivi des conversions publicitaires.</span>
+        </div>
+        <label class="toggle"><input type="checkbox" id="c-ads"><span class="slider"></span></label>
+      </div>
+
+      <div class="custom-row">
+        <div class="custom-row-info">
+          <strong>🎥 Microsoft Clarity</strong>
+          <span>Heatmaps et sessions anonymisées pour améliorer le site.</span>
+        </div>
+        <label class="toggle"><input type="checkbox" id="c-clarity"><span class="slider"></span></label>
+      </div>
+
+    </div>
+
+    <div class="custom-actions">
+      <button class="btn-save-custom" onclick="saveCustom()">Enregistrer mes choix ✓</button>
+      <button class="btn-back-banner" onclick="closeCustom()">← Retour</button>
+      <button class="btn-refuse-all-custom" onclick="bannerRefuse()">Tout refuser</button>
+    </div>
   </div>
 </div>
 
-!-- ── SCRIPT (juste après le bandeau, avant </body>) ── -->
+
+-- ── SCRIPT ── -->
 <script>
-  const CONSENT_KEY    = 'bd_cookie_consent';
-  const APPS_SCRIPT_URL = 'VOTRE_URL_ICI'; // ← remplacez par votre URL Apps Script
+  var CONSENT_KEY     = 'bd_cookie_consent';
+  var APPS_SCRIPT_URL = 'VOTRE_URL_ICI'; // ← remplacez par votre URL Apps Script
 
   function getSessionId() {
     var sid = sessionStorage.getItem('bd_sid');
-    if (!sid) {
-      sid = 'u_' + Date.now() + '_' + Math.random().toString(36).substr(2,8);
-      sessionStorage.setItem('bd_sid', sid);
-    }
+    if (!sid) { sid = 'u_' + Date.now() + '_' + Math.random().toString(36).substr(2,8); sessionStorage.setItem('bd_sid', sid); }
     return sid;
   }
 
   function activateAnalytics() {
     if (window._gaLoaded) return; window._gaLoaded = true;
-    var s = document.createElement('script');
+    var s = document.createElement('script'); s.async = true;
     s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-17870834052';
-    s.async = true; document.head.appendChild(s);
+    document.head.appendChild(s);
     window.dataLayer = window.dataLayer || [];
     window.gtag = function(){ dataLayer.push(arguments); };
     gtag('js', new Date()); gtag('config', 'AW-17870834052');
@@ -786,33 +850,50 @@
 
   function logToSheet(prefs, decision) {
     if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'VOTRE_URL_ICI') return;
-    fetch(APPS_SCRIPT_URL, {
-      method: 'POST',
-      body: JSON.stringify({
-        sessionId: getSessionId(), analytics: prefs.analytics,
-        ads: prefs.ads, clarity: prefs.clarity,
-        policyVersion: 'v1', page: window.location.pathname, decision: decision
-      })
-    }).catch(function(){});
+    fetch(APPS_SCRIPT_URL, { method: 'POST', body: JSON.stringify({
+      sessionId: getSessionId(), analytics: prefs.analytics,
+      ads: prefs.ads, clarity: prefs.clarity,
+      policyVersion: 'v1', page: window.location.pathname, decision: decision
+    })}).catch(function(){});
   }
 
   function applyAndLog(prefs, decision) {
-    localStorage.setItem(CONSENT_KEY, JSON.stringify({ ...prefs, ts: Date.now() }));
+    localStorage.setItem(CONSENT_KEY, JSON.stringify(Object.assign({}, prefs, { ts: Date.now() })));
     if (prefs.analytics || prefs.ads) activateAnalytics();
     if (prefs.clarity) activateClarity();
     logToSheet(prefs, decision);
   }
 
+  function hideBanner() { document.getElementById('cookie-banner').classList.remove('visible'); }
+
   function bannerAccept() {
     applyAndLog({ analytics: true, ads: true, clarity: true }, 'accept_all');
     hideBanner();
   }
+
   function bannerRefuse() {
     applyAndLog({ analytics: false, ads: false, clarity: false }, 'refuse_all');
     hideBanner();
   }
-  function hideBanner() {
-    document.getElementById('cookie-banner').classList.remove('visible');
+
+  function openCustom() {
+    document.getElementById('banner-main').style.display = 'none';
+    document.getElementById('banner-custom').classList.add('open');
+  }
+
+  function closeCustom() {
+    document.getElementById('banner-custom').classList.remove('open');
+    document.getElementById('banner-main').style.display = '';
+  }
+
+  function saveCustom() {
+    var prefs = {
+      analytics: document.getElementById('c-ga').checked,
+      ads:       document.getElementById('c-ads').checked,
+      clarity:   document.getElementById('c-clarity').checked
+    };
+    applyAndLog(prefs, 'custom');
+    hideBanner();
   }
 
   // Init
@@ -821,9 +902,7 @@
       var saved = JSON.parse(localStorage.getItem(CONSENT_KEY));
       if (saved) { applyAndLog(saved, 'returning'); return; }
     } catch(e) {}
-    setTimeout(function(){
-      document.getElementById('cookie-banner').classList.add('visible');
-    }, 1200);
+    setTimeout(function(){ document.getElementById('cookie-banner').classList.add('visible'); }, 1200);
   })();
 </script>
   
