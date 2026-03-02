@@ -45,6 +45,7 @@ a.about-badge:hover {
   border: 1px solid rgba(200,151,58,.2); 
   background: rgba(255,255,255,.02);
   overflow: hidden;
+  contain: layout style paint;
 }
 body{
   font-family: 'Montserrat', system-ui, -apple-system, Arial, sans-serif;
@@ -52,4 +53,12 @@ body{
 
 h1,h2,h3{
   font-family: 'Merriweather', Georgia, serif;
+}
+
+.calendly-inline-widget{
+  min-height:700px;
+  contain: layout style paint;
+}
+.calendly-inline-widget iframe{
+  will-change: transform;
 }
