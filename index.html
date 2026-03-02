@@ -207,13 +207,17 @@
     .footer-links a:hover { color: var(--gold); }
 
 /* ── BANDEAU COOKIES ── */
- #cookie-banner{
+ 
+    #cookie-banner{
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
   min-height: 70px;
-}
+  z-index: 9999;
+  background: #0b1d36;
+  pointer-events: auto;
+    }
 
 /* ── VUE PRINCIPALE ── */
 #banner-main {
