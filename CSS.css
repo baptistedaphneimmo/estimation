@@ -58,7 +58,25 @@ h1,h2,h3{
 .calendly-inline-widget{
   min-height:700px;
   contain: layout style paint;
+  content-visibility:auto;
+  contain-intrinsic-size:700px;
 }
+
 .calendly-inline-widget iframe{
   will-change: transform;
+}
+
+img, iframe, video{
+  content-visibility:auto;
+}
+
+html{
+  scroll-behavior:auto;
+}
+
+*{
+  box-sizing:border-box;
+}
+img, iframe, video{
+  content-visibility:auto;
 }
