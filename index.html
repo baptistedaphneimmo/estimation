@@ -945,7 +945,8 @@ function logToSheet(prefs, decision) {
 
   function applyAndLog(prefs, decision) {
     localStorage.setItem(CONSENT_KEY, JSON.stringify(Object.assign({}, prefs, { ts: Date.now() })));
-    if (prefs.analytics || prefs.ads) activateAnalytics();
+    if (prefs.analytics) activateAnalytics();
+    if (prefs.ads) activateAds();
     if (prefs.clarity) activateClarity();
     logToSheet(prefs, decision);
   }
@@ -987,7 +988,8 @@ function logToSheet(prefs, decision) {
     try {
       var saved = JSON.parse(localStorage.getItem(CONSENT_KEY));
 if (saved) {
-  if (saved.analytics || saved.ads) activateAnalytics();
+  if (saved.analytics) activateAnalytics();
+  if (saved.ads) activateAds();
   if (saved.clarity) activateClarity();
   var alreadyLogged = sessionStorage.getItem('bd_session_logged');
   if (!alreadyLogged) {
