@@ -966,7 +966,16 @@ function logToSheet(prefs, decision) {
   (function(){
     try {
       var saved = JSON.parse(localStorage.getItem(CONSENT_KEY));
-      if (saved) { applyAndLog(saved, 'returning'); return; }
+if (saved) {
+  if (saved.analytics || saved.ads) activateAnalytics();
+  if (saved.clarity) activateClarity();
+  var alreadyLogged = sessionStorage.getItem('bd_session_logged');
+  if (!alreadyLogged) {
+    sessionStorage.setItem('bd_session_logged', '1');
+    logToSheet(saved, 'returning');
+  }
+  return;
+}
     } catch(e) {}
     setTimeout(function(){ document.getElementById('cookie-banner').classList.add('visible'); }, 1200);
   })();
