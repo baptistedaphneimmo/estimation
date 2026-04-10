@@ -79,12 +79,14 @@ nav{
 .nav-cta:hover{background:var(--gold);transform:translateY(-1px);}
 
 /* ── HERO ── */
+
 .hero{
-  min-height:100vh;
+  min-height:600px;
+  max-height:800px;
   display:grid;grid-template-columns:52% 48%;
   padding-top:68px;
   position:relative;overflow:hidden;
-}
+  }
 
 .hero-left{
   display:flex;flex-direction:column;justify-content:center;
