@@ -32,7 +32,7 @@ window.addEventListener('scroll',()=>{nav.style.boxShadow=window.scrollY>20?'0 1
 
 // ── PARALLAXE HERO
 const heroImg=document.getElementById('hero-img');
-window.addEventListener('scroll',()=>{if(heroImg)heroImg.style.transform=`translateY(${window.scrollY*.18}px)`;},{passive:true});
+window.addEventListener('scroll',()=>{if(heroImg && window.innerWidth > 900)heroImg.style.transform=`translateY(${window.scrollY*.18}px)`;},{passive:true});
 
 // ── REVEAL
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target);}});},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
