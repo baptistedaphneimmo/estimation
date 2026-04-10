@@ -1,12 +1,19 @@
-
 // ── CURSEUR
 const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
 let cx=0,cy=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{cx=e.clientX;cy=e.clientY;cur.style.left=cx+'px';cur.style.top=cy+'px';});
 (function loop(){rx+=(cx-rx)*.1;ry+=(cy-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop);})();
-document.querySelectorAll('a,button').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{ring.style.width='50px';ring.style.height='50px';ring.style.opacity='.55';cur.style.opacity='0';});
-  el.addEventListener('mouseleave',()=>{ring.style.width='32px';ring.style.height='32px';ring.style.opacity='.3';cur.style.opacity='1';});
+
+// Délégation sur document — couvre aussi les éléments ajoutés après chargement (bandeau cookies)
+document.addEventListener('mouseover',e=>{
+  if(e.target.closest('a,button')){
+    ring.style.width='50px';ring.style.height='50px';ring.style.opacity='.55';cur.style.opacity='0';
+  }
+});
+document.addEventListener('mouseout',e=>{
+  if(e.target.closest('a,button')){
+    ring.style.width='32px';ring.style.height='32px';ring.style.opacity='.3';cur.style.opacity='1';
+  }
 });
 
 // ── SCROLL BAR
