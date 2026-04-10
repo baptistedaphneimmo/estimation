@@ -350,7 +350,7 @@ footer{background:var(--charcoal);color:var(--ivory);padding:2.8rem 8vw;display:
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
-/* ── CARROUSEL AVIS ── */
+
 .carousel-outer{
   position:relative;display:flex;align-items:center;gap:1rem;
   margin-top:3rem;
@@ -531,7 +531,6 @@ footer{background:var(--charcoal);color:var(--ivory);padding:2.8rem 8vw;display:
     </div>
   </div>
 </section>
-
 <!-- ═══ APPROCHE ═══ -->
 <section class="s-ivory wipe" id="approche">
   <div class="approche-layout">
@@ -551,7 +550,7 @@ footer{background:var(--charcoal);color:var(--ivory);padding:2.8rem 8vw;display:
         Ensuite, nous mettons en œuvre. Reportage photo professionnel, diffusion sur plus de 50 portails, réseau de 16&nbsp;000 conseillers. Nous pilotons la commercialisation à partir de faits observables, défendons vos intérêts à chaque offre, coordonnons avec le notaire. Notre engagement ne s'arrête pas à la signature. Nous restons disponibles après la vente — parce qu'une relation de confiance ne s'arrête pas le jour du déménagement.
       </p>
     </div>
-    <div class="reveal d2">
+    <div class="reveal d2" style="position:sticky;top:120px;align-self:start;">
       <div class="benefits">
         <div class="ben">
           <div class="ben-n">01</div>
@@ -748,14 +747,14 @@ window.addEventListener('scroll',()=>{nav.style.boxShadow=window.scrollY>20?'0 1
 
 // ── PARALLAXE HERO
 const heroImg=document.getElementById('hero-img');
-window.addEventListener('scroll',()=>{if(heroImg)heroImg.style.transform=`translateY(${window.scrollY*.18}px)` scale(1.04)`;},{passive:true});
+window.addEventListener('scroll',()=>{if(heroImg)heroImg.style.transform=`translateY(${window.scrollY*.18}px)`;},{passive:true});
 
 // ── REVEAL
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target);}});},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.reveal,.reveal-l').forEach(el=>obs.observe(el));
 
 
-// ── CARROUSEL AVIS
+
 let carPos = 0;
 function moveCarousel(dir) {
   const track = document.getElementById('carouselTrack');
