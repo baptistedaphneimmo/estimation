@@ -1,570 +1,164 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="keywords" content="estimation immobilière Chambéry, avis de valeur Chambéry, prix immobilier Savoie, vendre son bien Chambéry, Jacob-Bellecombette">
-  <title>Baptiste & Daphné Immobilier | Chambéry & alentours</title>
-  
-<link rel="preload" href="/CSS.css" as="style">
-<link rel="stylesheet" href="/CSS.css" media="print" onload="this.media='all'">
-<noscript>
-  <link rel="stylesheet" href="/CSS.css">
-</noscript>
-  
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Montserrat:wght@300;400;500;600&display=swap"
-      rel="stylesheet">
-
-<link rel="preconnect" href="https://assets.calendly.com">
-<link rel="preconnect" href="https://calendly.com">
-<link rel="dns-prefetch" href="https://assets.calendly.com">
-<link rel="dns-prefetch" href="https://calendly.com">
-  
-  <style>
-    :root {
-      --navy:   #1B2B4B;
-      --navy2:  #162240;
-      --gold:   #c9a96e;
-      --gold-lt:#c9a96e;
-      --cream:  #F5F0E8;
-      --white:  #FFFFFF;
-      --grey:   #8A9AB5;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Montserrat', sans-serif; background: var(--navy); color: var(--white); overflow-x: hidden; }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1.2rem 5%;
-      background: rgba(27,43,75,0.94);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(200,151,58,0.2);
-    }
-    .nav-logo { font-family: 'Merriweather', serif; font-size: 1.1rem; color: var(--white); letter-spacing: .04em; }
-    .nav-logo span { color: var(--gold); }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { color: rgba(255,255,255,.75); text-decoration: none; font-size: .87rem; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; transition: color .25s; }
-    .nav-links a:hover { color: var(--gold); }
-    .nav-cta { background: var(--gold) !important; color: var(--navy) !important; padding: .5rem 1.3rem; border-radius: 4px; font-weight: 700 !important; }
-    .nav-cta:hover { background: var(--gold-lt) !important; }
-
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      display: grid; grid-template-columns: 1fr 1fr;
-      align-items: center;
-      padding: 8rem 5% 5rem;
-      position: relative; overflow: hidden;
-    }
-    .hero::before {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(200,151,58,.08), transparent 70%),
-                  radial-gradient(ellipse 40% 60% at 10% 80%, rgba(200,151,58,.05), transparent 60%);
-      pointer-events: none;
-    }
-    .hero-text { position: relative; z-index: 2; }
-    .hero-eyebrow {
-      display: inline-block; font-size: .77rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
-      color: var(--gold); border: 1px solid rgba(200,151,58,.4); padding: .4rem 1rem; border-radius: 2px;
-      margin-bottom: 2rem; animation: fadeUp .8s ease both;
-    }
-    .hero h1 {
-      font-family: 'Merriweather', serif;
-      font-size: clamp(2.8rem, 5.5vw, 5rem); font-weight: 900; line-height: 1.08;
-      margin-bottom: 1.5rem; animation: fadeUp .8s .15s ease both;
-    }
-    .hero h1 em { font-style: normal; color: var(--gold); }
-    .hero-sub { font-size: 1.1rem; color: rgba(255,255,255,.65); max-width: 480px; line-height: 1.75; margin-bottom: 2.5rem; animation: fadeUp .8s .3s ease both; }
-    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp .8s .45s ease both; }
-
-    .btn-primary { display: inline-block; background: var(--gold); color: var(--navy); font-weight: 700; font-size: .95rem; letter-spacing: .03em; padding: 1rem 2.2rem; border-radius: 4px; text-decoration: none; transition: background .25s, transform .2s; }
-    .btn-primary:hover { background: var(--gold-lt); transform: translateY(-2px); }
-    .btn-outline { display: inline-block; border: 1.5px solid rgba(255,255,255,.3); color: var(--white); font-weight: 500; font-size: .95rem; padding: 1rem 2rem; border-radius: 4px; text-decoration: none; transition: border-color .25s, color .25s, transform .2s; }
-    .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
-
-    .hero-stat {
-      margin-top: 3rem; display: inline-flex; align-items: center; gap: 1.2rem;
-      background: rgba(255,255,255,.04); border: 1px solid rgba(200,151,58,.25); border-radius: 8px;
-      padding: 1rem 1.6rem; animation: fadeUp .8s .6s ease both;
-    }
-    .stat-big { font-family: 'Merriweather', serif; font-size: 2.8rem; font-weight: 900; color: var(--gold); line-height: 1; }
-    .stat-desc { font-size: .85rem; color: rgba(255,255,255,.6); line-height: 1.5; }
-    .stat-desc strong { color: var(--white); display: block; }
-
-    .hero-visual { display: flex; justify-content: center; align-items: center; animation: fadeIn 1s .3s ease both; }
-    .hero-card { background: rgba(255,255,255,.04); border: 1px solid rgba(200,151,58,.2); border-radius: 16px; padding: 2.5rem; text-align: center; max-width: 320px; }
-    .duo-photo-placeholder {
-      width: 190px; height: 210px; background: linear-gradient(160deg, rgba(200,151,58,.15), rgba(200,151,58,.03));
-      border-radius: 12px; margin: 0 auto 1.5rem; display: flex; flex-direction: column;
-      align-items: center; justify-content: center; border: 1px dashed rgba(200,151,58,.3);
-      font-size: .8rem; color: rgba(255,255,255,.3); gap: .3rem; padding: 1rem; text-align: center;
-    }
-    .duo-names { font-family: 'Merriweather', serif; font-size: 1.05rem; line-height: 1.7; margin-bottom: .4rem; }
-    .duo-names span { color: var(--gold); }
-    .duo-title { font-size: .78rem; color: var(--grey); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 1.2rem; }
-    .iad-badge { display: inline-block; border: 1px solid rgba(200,151,58,.4); padding: .35rem .9rem; border-radius: 20px; font-size: .75rem; color: var(--gold); letter-spacing: .1em; text-transform: uppercase; }
-
-    /* ── SECTION BASE ── */
-    section { padding: 6rem 5%; }
-    .section-label { font-size: .75rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: block; }
-    .section-title { font-family: 'Merriweather', serif; font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 900; line-height: 1.15; margin-bottom: 1.2rem; }
-    .section-sub { font-size: 1.05rem; color: rgba(255,255,255,.6); line-height: 1.8; max-width: 560px; }
-    .divider { width: 3rem; height: 2px; background: var(--gold); margin: 1.5rem 0 2rem; }
-
-    /* ── POURQUOI ── */
-    .why { background: var(--navy2); }
-    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 4rem; }
-    .why-items { display: flex; flex-direction: column; gap: 1.8rem; }
-    .why-item { display: flex; gap: 1.2rem; align-items: flex-start; }
-    .why-icon { width: 44px; height: 44px; flex-shrink: 0; background: rgba(200,151,58,.12); border: 1px solid rgba(200,151,58,.3); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
-    .why-item h3 { font-size: 1rem; font-weight: 600; margin-bottom: .3rem; }
-    .why-item p { font-size: .9rem; color: rgba(255,255,255,.55); line-height: 1.6; }
-    .stat-card { background: rgba(255,255,255,.03); border: 1px solid rgba(200,151,58,.2); border-radius: 16px; padding: 3rem; text-align: center; }
-    .stat-card .num { font-family: 'Merriweather', serif; font-size: 5rem; font-weight: 900; color: var(--gold); line-height: 1; display: block; }
-    .stat-card .label { font-size: 1rem; color: rgba(255,255,255,.6); margin-top: .8rem; line-height: 1.5; }
-    .stat-card .source { font-size: .75rem; color: var(--grey); margin-top: .5rem; }
-
-    /* ── SERVICES ── */
-    .services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3.5rem; }
-    .service-card { background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 2.2rem; transition: border-color .3s, transform .3s; position: relative; overflow: hidden; }
-    .service-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform .3s; }
-    .service-card:hover { border-color: rgba(200,151,58,.3); transform: translateY(-4px); }
-    .service-card:hover::after { transform: scaleX(1); }
-    .service-icon { font-size: 2rem; margin-bottom: 1.2rem; }
-    .service-card h3 { font-family: 'Merriweather', serif; font-size: 1.2rem; margin-bottom: .8rem; }
-    .service-card p { font-size: .88rem; color: rgba(255,255,255,.55); line-height: 1.7; }
-
-    /* ── ABOUT ── */
-    .about { background: var(--navy2); }
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 3rem; }
-    .about-photo-area { position: relative; }
-    .about-photo { width: 100%; height: 100%; object-fit: cover; object-position: center; aspect-ratio: 4/5; background: linear-gradient(160deg, rgba(200,151,58,.12), rgba(27,43,75,.8)); border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px dashed rgba(200,151,58,.25); font-size: .85rem; color: rgba(255,255,255,.25); text-align: center; padding: 2rem; gap: .5rem; }
-    .about-badge { position: absolute; bottom: -1.5rem; right: -1.5rem; background: var(--gold); color: var(--navy); border-radius: 12px; padding: 1.2rem 1.6rem; font-weight: 700; font-size: .88rem; line-height: 1.5; box-shadow: 0 8px 24px rgba(200,151,58,.3); }
-    .about-text blockquote { font-family: 'Merriweather', serif; font-size: 1.25rem; font-style: italic; color: var(--gold); border-left: 3px solid var(--gold); padding-left: 1.5rem; margin: 2rem 0; line-height: 1.6; }
-    .about-text p { font-size: .92rem; color: rgba(255,255,255,.6); line-height: 1.8; margin-bottom: 1rem; }
-    .profiles { display: flex; gap: 1.2rem; margin-top: 2rem; flex-wrap: wrap; }
-    .profile-chip { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: .8rem 1.2rem; }
-    .profile-chip strong { display: block; font-size: .92rem; margin-bottom: .15rem; }
-    .profile-chip span { font-size: .75rem; color: var(--grey); }
-
-    /* ── AVIS ── */
-    .carousel-outer { display: flex; align-items: center; gap: 1rem; margin-top: 3.5rem; }
-    .carousel-clip { overflow: hidden; flex: 1; }
-    .carousel-btn { background: rgba(255,255,255,.05); border: 1px solid rgba(200,151,58,.3); color: var(--gold); font-size: 1.2rem; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; flex-shrink: 0; transition: background .2s; display: flex; align-items: center; justify-content: center; }
-    .carousel-btn:hover { background: rgba(200,151,58,.15); }
-    .carousel-dots { display: flex; justify-content: center; gap: .5rem; margin-top: 1.5rem; }
-    .carousel-dots .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.2); cursor: pointer; transition: background .2s; }
-    .carousel-dots .dot.active { background: var(--gold); }
-    .carousel-track {display: flex; flex-wrap: nowrap; gap: 1.5rem; transition: transform .4s ease;}
-    .carousel-track .review-card { width: calc(33.333% - 1rem); flex-shrink: 0; overflow: hidden; }
-    .review-card { background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 2rem; }
-    .stars { color: var(--gold); font-size: .95rem; margin-bottom: 1rem; letter-spacing: .1em; }
-    .review-card blockquote { font-size: .88rem; color: rgba(255,255,255,.7); line-height: 1.7; font-style: italic; margin-bottom: 1.2rem;white-space: normal;word-wrap: break-word}
-    .review-author strong { font-size: .88rem; display: block; }
-    .review-author span { font-size: .78rem; color: var(--grey); }
-
-    /* ── ZONE ── */
-    .zone { background: var(--navy2); }
-    .zone-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 3rem; }
-    .cities { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 2rem; }
-    .city-pill { background: rgba(200,151,58,.1); border: 1px solid rgba(200,151,58,.25); color: var(--gold); border-radius: 20px; padding: .4rem 1rem; font-size: .82rem; font-weight: 500; }
-    .map-placeholder { aspect-ratio: 1; background: rgba(255,255,255,.03); border: 1px dashed rgba(200,151,58,.2); border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: .85rem; color: rgba(255,255,255,.2); text-align: center; padding: 2rem; gap: .5rem; }
-
-    /* ── CTA / CALENDLY ── */
-    .cta-section { text-align: center; padding: 7rem 5%; position: relative; overflow: hidden; }
-    .cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(200,151,58,.1), transparent 70%); pointer-events: none; }
-    .cta-section .section-title { max-width: 700px; margin: .5rem auto 1.5rem; }
-    .cta-section .section-sub { max-width: 540px; margin: 0 auto 3rem; }
-    .calendly-wrapper { max-width: 900px; margin: 0 auto; border-radius: 16px; overflow: hidden; border: 1px solid rgba(200,151,58,.2); min-height: 700px; background: rgba(255,255,255,.02); }
-    .calendly-placeholder { min-height: 680px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; color: rgba(255,255,255,.3); font-size: .9rem; text-align: center; padding: 2rem; }
-    .calendly-placeholder .cal-icon { font-size: 3.5rem; }
-
-    /* ── CONTACT BAR ── */
-    .contact-bar { background: var(--gold); color: var(--navy); padding: 2.5rem 5%; display: flex; align-items: center; justify-content: center; gap: 2.5rem; flex-wrap: wrap; }
-    .contact-bar p { font-size: 1.1rem; font-weight: 600; }
-    .contact-bar a { font-family: 'Merriweather', serif; font-size: 1.8rem; font-weight: 900; color: var(--navy); text-decoration: none; letter-spacing: .05em; transition: opacity .2s; }
-    .contact-bar a:hover { opacity: .7; }
-    .contact-bar .sep { width: 1px; height: 40px; background: rgba(27,43,75,.2); }
-
-    /* ── FOOTER ── */
-    footer { background: var(--navy2); border-top: 1px solid rgba(255,255,255,.06); padding: 2.5rem 5%; display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
-    .footer-logo { font-family: 'Merriweather', serif; font-size: 1rem; white-space: nowrap; }
-    .footer-logo span { color: var(--gold); }
-    footer p { font-size: .73rem; color: var(--grey); max-width: 660px; line-height: 1.7; }
-    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: .5rem; }
-    .footer-links a { font-size: .75rem; color: var(--grey); text-decoration: none; transition: color .2s; }
-    .footer-links a:hover { color: var(--gold); }
-
-/* ── BANDEAU COOKIES ── */
- 
-#cookie-banner{
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  min-height: 70px;
-  z-index: 9999;
-  background: #0b1d36;
-
-  /* état caché par défaut */
-  opacity: 0;
-  transform: translateY(100%);
-  pointer-events: none;
-  transition: all .4s ease;
-}
-
-/* état visible */
-#cookie-banner.visible{
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-
-/* ── VUE PRINCIPALE ── */
-#banner-main {
-  padding: 1.6rem 5%;
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 2rem; flex-wrap: wrap;
-}
-.banner-left { flex: 1; min-width: 240px; }
-.banner-left strong { display: block; font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: .4rem; }
-.banner-left p { font-size: .78rem; color: rgba(255,255,255,.5); line-height: 1.6; margin: 0; }
-.banner-left p em { font-style: normal; color: rgba(255,255,255,.75); font-weight: 500; }
-.banner-left p a { color: #c9a96e; text-decoration: none; }
-
-.banner-right { display: flex; flex-direction: column; align-items: flex-end; gap: .6rem; flex-shrink: 0; }
-.banner-btns-row { display: flex; gap: .7rem; align-items: center; }
-
-.btn-banner-accept {
-  background: linear-gradient(135deg, #d4b06a 0%, #c9a96e 60%, #b8954f 100%);
-  color: #1B2B4B; font-family: 'Montserrat', sans-serif;
-  font-weight: 800; font-size: .88rem; letter-spacing: .04em;
-  padding: .75rem 1.8rem; border-radius: 6px; border: none; cursor: pointer;
-  box-shadow: 0 4px 18px rgba(201,169,110,.35);
-  transition: box-shadow .2s, transform .2s, filter .2s; white-space: nowrap;
-}
-.btn-banner-accept:hover { box-shadow: 0 6px 28px rgba(201,169,110,.55); transform: translateY(-1px); filter: brightness(1.07); }
-
-.btn-banner-refuse {
-  background: rgba(255,255,255,.08);
-  color: rgba(255,255,255,.85);
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  font-size: .88rem;
-  padding: .75rem 1.8rem;
-  border-radius: 6px;
-  border: 1.5px solid rgba(255,255,255,.3);
-  cursor: pointer;
-  transition: background .2s, border-color .2s;
-  white-space: nowrap;
-}
-.btn-banner-refuse:hover {
-  background: rgba(255,255,255,.14);
-  border-color: rgba(255,255,255,.5);
-}
-
-.btn-banner-custom {
-  background: none; border: none; cursor: pointer; font-family: 'Montserrat', sans-serif;
-  font-size: .72rem; color: rgba(255,255,255,.3);
-  text-decoration: underline; text-underline-offset: 3px;
-  padding: 0; transition: color .2s;
-}
-.btn-banner-custom:hover { color: rgba(255,255,255,.55); }
-.banner-reassurance { font-size: .68rem; color: rgba(255,255,255,.2); text-align: right; }
-
-/* ── VUE PERSONNALISATION ── */
-#banner-custom {
-  display: none;
-  padding: 1.6rem 5% 1.4rem;
-  border-top: 1px solid rgba(255,255,255,.06);
-}
-#banner-custom.open { display: block; }
-
-.custom-title {
-  font-size: .8rem; font-weight: 700; color: #c9a96e;
-  letter-spacing: .12em; text-transform: uppercase;
-  margin-bottom: 1rem;
-}
-
-.custom-rows { display: flex; gap: .8rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
-
-.custom-row {
-  flex: 1; min-width: 180px;
-  background: rgba(255,255,255,.03);
-  border: 1px solid rgba(255,255,255,.08);
-  border-radius: 8px; padding: .9rem 1rem;
-  display: flex; align-items: center; justify-content: space-between;
-  gap: .8rem; transition: border-color .2s;
-}
-.custom-row:hover { border-color: rgba(201,169,110,.25); }
-.custom-row.required { opacity: .6; }
-
-.custom-row-info { flex: 1; }
-.custom-row-info strong { display: block; font-size: .8rem; color: #fff; margin-bottom: .15rem; }
-.custom-row-info span { font-size: .7rem; color: rgba(255,255,255,.35); line-height: 1.4; }
-
-/* Toggle */
-.toggle { position: relative; width: 40px; height: 22px; flex-shrink: 0; }
-.toggle input { opacity: 0; width: 0; height: 0; }
-.slider {
-  position: absolute; cursor: pointer; inset: 0;
-  background: rgba(255,255,255,.12); border-radius: 22px; transition: background .3s;
-}
-.slider::before {
-  content: ''; position: absolute; width: 16px; height: 16px;
-  left: 3px; bottom: 3px; background: #fff;
-  border-radius: 50%; transition: transform .3s;
-}
-input:checked + .slider { background: #c9a96e; }
-input:checked + .slider::before { transform: translateX(18px); }
-input:disabled + .slider { cursor: not-allowed; opacity: .5; }
-
-/* Boutons panneau custom */
-.custom-actions { display: flex; gap: .7rem; align-items: center; flex-wrap: wrap; }
-
-.btn-save-custom {
-  background: linear-gradient(135deg, #d4b06a, #c9a96e);
-  color: #1B2B4B; font-family: 'Montserrat', sans-serif;
-  font-weight: 800; font-size: .85rem;
-  padding: .65rem 1.6rem; border-radius: 6px; border: none; cursor: pointer;
-  box-shadow: 0 4px 14px rgba(201,169,110,.3);
-  transition: box-shadow .2s, transform .2s;
-}
-.btn-save-custom:hover { box-shadow: 0 6px 22px rgba(201,169,110,.5); transform: translateY(-1px); }
-
-.btn-back-banner {
-  background: transparent; color: rgba(255,255,255,.4);
-  font-family: 'Montserrat', sans-serif; font-size: .78rem;
-  border: none; cursor: pointer; padding: 0;
-  text-decoration: underline; text-underline-offset: 3px;
-  transition: color .2s;
-}
-.btn-back-banner:hover { color: rgba(255,255,255,.7); }
-
-.btn-refuse-all-custom {
-  background: transparent; color: rgba(255,255,255,.35);
-  font-family: 'Montserrat', sans-serif; font-size: .78rem;
-  border: 1px solid rgba(255,255,255,.12); border-radius: 4px;
-  cursor: pointer; padding: .5rem .9rem; transition: color .2s, border-color .2s;
-  margin-left: auto;
-}
-.btn-refuse-all-custom:hover { color: rgba(255,255,255,.6); border-color: rgba(255,255,255,.25); }
-
-@media (max-width: 640px) {
-  #banner-main { flex-direction: column; align-items: flex-start; }
-  .banner-right { align-items: flex-start; width: 100%; }
-  .banner-btns-row { width: 100%; }
-  .btn-banner-accept, .btn-banner-refuse { flex: 1; text-align: center; }
-  .banner-reassurance { text-align: left; }
-  .custom-rows { flex-direction: column; }
-  .custom-actions { flex-direction: column; align-items: flex-start; }
-  .btn-refuse-all-custom { margin-left: 0; }
-}
-
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-    /* ── RESPONSIVE ── */
-
-@media (max-width: 1024px) {
-  .hero { grid-template-columns: 1fr; text-align: center; padding-top: 7rem; }
-  .hero-sub { margin-left: auto; margin-right: auto; }
-  .hero-stat { margin-left: auto; margin-right: auto; max-width: 100%; width: fit-content; }
-  .hero-actions { justify-content: center; }
-  .hero-visual { margin-top: 3rem; }
-  .why-grid, .zone-wrap, .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-  .services-grid, .reviews-grid { grid-template-columns: 1fr 1fr; }
-  .about-badge { position: static; margin-top: 1.5rem; display: inline-block; }
-  nav .nav-links li:not(:last-child) { display: none; }
-  nav .nav-links { gap: 0; }
-  .calendly-wrapper { height: 620px; }
-}
-
-@media (max-width: 768px) {
-  .nav-cta { font-size: .75rem; padding: .4rem .8rem; white-space: nowrap; }
-  nav .nav-links { gap: 0; }
-  .section-title { font-size: 1.8rem; }
-  .hero h1 { font-size: 2rem; }
-  .hero-stat { flex-direction: column; text-align: center; gap: .6rem; }
-  .services-grid, .reviews-grid { grid-template-columns: 1fr; }
-  .zone-wrap iframe { height: 300px; }
-  .contact-bar { flex-direction: column; gap: 1rem; text-align: center; }
-  .contact-bar .sep { display: none; }
-  .carousel-track .review-card { min-width: 100%; }
-  .calendly-wrapper { height: 580px; }
-}
-
-@media (max-width: 600px) {
-  section { padding: 4rem 5%; }
-  .hero h1 { font-size: 2.2rem; }
-    .nav-cta {  font-size: .75rem; padding: .4rem .8rem; white-space: nowrap;}
-   .calendly-wrapper { height: 520px; }
-}
-</style>
-
-  <!-- ═══ FAVICON ═══ -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vendre son appartement ou sa maison à Chambéry — Baptiste & Daphné Immobilier, conseillers en immobilier Savoie</title>
+<meta name="description" content="Vous voulez vendre votre appartement ou maison à Chambéry ? Baptiste & Daphné structurent votre stratégie de vente immobilière en Savoie — là où les outils d'estimation s'arrêtent, leur analyse commence. Premier échange offert — 06 10 32 74 93.">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"RealEstateAgent","name":"Baptiste & Daphné Immobilier","description":"Conseillers en immobilier spécialisés dans la stratégie de vente immobilière à Chambéry et en Savoie. Vente d'appartements, maisons, cession de fonds de commerce.","url":"https://baptistedaphneimmo.com","telephone":"+33610327493","areaServed":["Chambéry","Jacob-Bellecombette","Cognin","Barberaz","La Ravoire","Barby","Bassens","Challes-les-Eaux","Savoie"],"address":{"@type":"PostalAddress","addressLocality":"Chambéry","addressRegion":"Savoie","postalCode":"73000","addressCountry":"FR"},"openingHours":"Mo-Su 08:00-20:00","aggregateRating":{"@type":"AggregateRating","ratingValue":"5","ratingCount":"14","bestRating":"5"},"priceRange":"Honoraires sur vente","sameAs":["https://www.google.com/maps?cid=15526885842950210834"]}</script>
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Vendre à Chambéry — Baptiste & Daphné Immobilier">
+<meta property="og:description" content="Conseillers en immobilier à Chambéry et en Savoie. Stratégie de vente immobilière, vente d'appartements et maisons. Premier échange offert — 06 10 32 74 93.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://baptistedaphneimmo.com">
+<meta property="og:locale" content="fr_FR">
+<!-- SEO: vendre appartement Chambéry, vendre maison Chambéry, vente immobilière Savoie, conseiller immobilier Chambéry, stratégie vente immobilière Chambéry, cession fonds de commerce Chambéry, prix immobilier Chambéry -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<link rel="dns-prefetch" href="https://www.clarity.ms">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.webp">
 <link rel="icon" type="image/webp" sizes="32x32" href="/favicon-32x32.webp">
 <link rel="icon" type="image/webp" sizes="16x16" href="/favicon-16x16.webp">
 <link rel="manifest" href="/site.webmanifest">
-
-
-
-    
-</div>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="cookies.css">
 </head>
 <body>
 
-<!-- ═══ NAV ═══ -->
-<nav>
-  <div class="nav-logo">Baptiste &amp; Daphné <span>Immobilier</span></div>
+<div id="sbar"></div>
+<div id="cur"></div>
+<div id="cur-ring"></div>
+<div class="mobile-sticky"><a href="tel:0610327493">☎&nbsp;&nbsp;06 10 32 74 93 — Nous décrocherons</a></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Baptiste <span>&</span> Daphné<br>Immobilier</a>
   <ul class="nav-links">
-    <li><a href="#pourquoi">Pourquoi nous</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#about">À propos</a></li>
-    <li><a href="#avis">Avis</a></li>
-    <li><a href="#rdv" class="nav-cta">Découvrir la valeur de mon bien</a></li>
+    <li><a href="#approche">Notre approche</a></li>
+    <li><a href="#avis">Avis clients</a></li>
   </ul>
+  <div class="nav-right">
+    <a href="tel:0610327493" class="nav-phone">06 10 32 74 93</a>
+    <a href="tel:0610327493" class="nav-cta">Discuter de mon projet</a>
+  </div>
 </nav>
-<main>
+
 <!-- ═══ HERO ═══ -->
 <section class="hero">
-  <div class="hero-text">
-    <div class="hero-eyebrow">Conseillers immobiliers IAD — Chambéry & alentours </div>
-    <h1>Votre bien vaut <em>combien,</em><br/>vraiment&nbsp;?</h1>
-    <p class="hero-sub">Un mauvais départ coûte plus cher qu'une négociation. Avant de fixer votre prix, découvrez ce que le marché chambérien dit vraiment, là où d'autres commencent par une estimation approximative.</p>
-    <div class="hero-actions">
-      <a href="#rdv" class="btn-primary">📅 Avis de valeur — Offert</a>
-      <a href="tel:0610327493" class="btn-outline">📞 06 10 32 74 93</a>
+  <div class="hero-left">
+    <p class="hero-eyebrow">Conseillers en immobilier · Chambéry &amp; Savoie · Stratégie de vente immobilière</p>
+    <h1 class="hero-title">
+      Certains biens<br>se vendent vite.<br>
+      D'autres non.<br><em>La différence,<br>c'est la stratégie.</em>
+    </h1>
+    <p class="hero-subtitle">
+      Vendre un appartement ou une maison à Chambéry ne s'improvise pas. Avant le moindre chiffre, nous venons sur les lieux comprendre votre situation, lire le bien avec un regard acquéreur, et confronter l'ensemble aux ventes réellement signées dans votre secteur.
+    </p>
+    <div class="cta-cluster">
+      <a href="tel:0610327493" class="btn-primary">Entrons en relation</a>
+      <a href="tel:0610327493" class="btn-phone">
+        <div>
+          <div class="phone-num-hero">06 10 32 74 93</div>
+        </div>
+      </a>
     </div>
-   </div>
+    <div class="hero-stat">
+      <div>
+        <div class="stat-num" data-target="-8" data-suffix=" %">−8 %</div>
+        <div class="stat-lbl">décote moyenne<br>après un mauvais départ prix</div>
+        <div style="font-size:.6rem;color:#5E5955;margin-top:.3rem;letter-spacing:.04em;">Source&nbsp;: Baromètre LPI-IAD</div>
+      </div>
+      <div>
+        <div class="stat-num" data-target="100" data-suffix=" %">100 %</div>
+        <div class="stat-lbl">de nos clients<br>recommandent</div>
+        <div style="font-size:.6rem;color:#5E5955;margin-top:.3rem;letter-spacing:.04em;">Avis Google vérifiés</div>
+      </div>
+      <div>
+        <div class="stat-num" data-target="2">2</div>
+        <div class="stat-lbl">conseillers sur<br>chaque dossier</div>
+      </div>
+    </div>
   </div>
-
-  <div class="hero-visual">
-    <div class="hero-card">
-      <div class="duo-photo-placeholder"> <img src="duonb.webp" alt="Photo duo Baptiste et Daphné" width="700"height="820"></div>
-      <div class="duo-names">Baptiste <span>AUDOUIN</span><br/>Daphné <span>MARTIN MARIN</span></div>
-      <div class="duo-title">Conseillers immobiliers</div>
-      <span class="iad-badge">IAD Immobilier</span>
+  <div class="hero-right">
+    <div class="hero-right-bg"></div>
+    <img id="hero-img" src="duonb.png" alt="Baptiste Audouin et Daphné Martin Marin — conseillers en immobilier à Chambéry, spécialistes de la vente immobilière en Savoie">
+    <div class="hero-quote">
+      <p>«&nbsp;Nous ne commençons jamais par un chiffre. Nous commençons par comprendre.&nbsp;»</p>
+      <cite>Baptiste &amp; Daphné — conseillers en immobilier à Chambéry</cite>
     </div>
   </div>
 </section>
 
-<!-- ═══ POURQUOI ═══ -->
-<section class="why" id="pourquoi">
-  <span class="section-label">Avant de vendre, vérifiez</span>
-  <h2 class="section-title">Ce que les vendeurs<br/>ne savent pas</h2>
-  <div class="divider"></div>
-  <div class="why-grid">
-    <div class="why-items">
-      <div class="why-item">
-        <div class="why-icon">🔍</div>
-        <div>
-          <h3>À combien se vendent vraiment les biens similaires</h3>
-          <p>Pas le prix affiché. Le prix réel de vente, signé chez le notaire. On vous montre les données.</p>
-        </div>
-      </div>
-      <div class="why-item">
-        <div class="why-icon">⏱️</div>
-        <div>
-          <h3>Combien de temps ils restent en ligne</h3>
-          <p>Un bien qui stagne est un bien qui se négocie à la baisse. Nous analysons les délais moyens dans votre secteur.</p>
-        </div>
-      </div>
-      <div class="why-item">
-        <div class="why-icon">⚡</div>
-        <div>
-          <h3>Pourquoi certains biens se vendent vite… et d'autres non</h3>
-          <p>Parce que le marché sanctionne les départs improvisés. En travaillant la stratégie en amont, on anticipe les écarts au lieu de les subir.</p>
-        </div>
-      </div>
+<!-- ═══ SIGNAL RAPIDE ═══ -->
+<section class="s-cream wipe" id="signal">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;">
+    <div class="reveal reveal-l">
+      <div class="lbl">Baptiste &amp; Daphné</div>
+      <h2 class="signal-h2">
+        Deux conseillers sur chaque dossier.<br>
+        <em>Parce que votre bien, quelle que soit sa valeur, mérite cette attention.</em>
+      </h2>
+      <p class="signal-body">
+        Baptiste et Daphné, conseillers en immobilier à Chambéry. Nous accompagnons la vente de biens résidentiels — appartements, maisons — et la cession de fonds de commerce en Savoie. Nos parcours nous ont appris une chose&nbsp;: une transaction bien préparée se passe toujours mieux qu'une transaction précipitée.
+      </p>
+      <p class="signal-body">
+        Le premier pas&nbsp;? Un échange chez vous, sans chiffre posé d'entrée, sans pression de signer quoi que ce soit.
+      </p>
+
     </div>
-    <div class="stat-card">
-      <span class="num">−8%</span>
-      <p class="label">C'est la décote moyenne observée<br/>après un mauvais départ prix</p>
-      <p class="source">Source: Baromètre LPI-IAD</p>
-      <div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.08)">
-        <p style="font-size:.85rem;color:rgba(255,255,255,.5);margin-bottom:1rem">Un mauvais départ coûte plus cher qu'une négociation</p>
-        <a href="#rdv" class="btn-primary" style="font-size:.88rem">Connaître la valeur de mon bien</a>
-      </div>
+    <div class="signal-cta-col reveal d2">
+      <p class="cta-lbl">Premier contact</p>
+      <h3 class="cta-title">Le premier rendez-vous se passe chez vous, sur les lieux de votre bien.</h3>
+      <p class="cta-body">
+        Pas un chiffre posé à la va-vite. Une rencontre pour comprendre votre situation et lire le bien ensemble.
+      </p>
+      <a href="tel:0610327493" class="cta-phone">
+        <div>
+          <div class="cta-phone-num">06 10 32 74 93</div>
+        </div>
+      </a>
+      <a href="tel:0610327493" class="cta-btn">Discuter de mon projet</a>
     </div>
   </div>
 </section>
-
-<!-- ═══ SERVICES ═══ -->
-<section id="services">
-  <span class="section-label">Nos prestations</span>
-  <h2 class="section-title">Ce que nous faisons<br/>pour vous</h2>
-  <div class="divider"></div>
-  <p class="section-sub">Un accompagnement complet, de l'évaluation à la remise des clés, avec l'appui du réseau IAD Immobilier.</p>
-  <div class="services-grid">
-    <div class="service-card">
-      <div class="service-icon">🏠</div>
-      <h3>Evaluation précise</h3>
-      <p>Analyse comparative de marché avec les données réelles de vente. Rendez-vous offert, sans engagement, à votre domicile.</p>
+<!-- ═══ APPROCHE ═══ -->
+<section class="s-ivory wipe" id="approche">
+  <div class="approche-layout">
+    <div class="reveal reveal-l">
+      <div class="lbl">Notre approche</div>
+      <h2 class="s-title" style="margin-bottom:2rem;">
+        «&nbsp;Une vente est toujours une transition importante.<br>
+        <em>Notre rôle est d'en sécuriser le déroulement.&nbsp;»</em>
+      </h2>
+      <p class="narr">
+        Le juste prix n'est pas celui qu'un outil calcule — c'est celui que le marché confirme. Avant de poser un chiffre, nous venons sur les lieux de votre bien. Nous lisons l'espace, nous écoutons votre situation, votre calendrier, ce qui compte pour vous. Nous confrontons ensuite l'ensemble aux ventes réellement signées dans votre secteur — données notariales, délais observés, concurrence active.
+      </p>
+      <p class="narr">
+        Ce travail nourrit une restitution structurée&nbsp;: plusieurs options de positionnement, les conséquences concrètes de chacune, une vision complète pour décider sans pression. Les outils d'estimation donnent une fourchette — nous commençons là où ils s'arrêtent.
+      </p>
+      <p class="narr">
+        Ensuite, nous mettons en œuvre. Reportage photo professionnel, diffusion sur plus de 50 portails, réseau de 16&nbsp;000 conseillers. Nous pilotons la commercialisation à partir de faits observables, défendons vos intérêts à chaque offre, coordonnons avec le notaire. Notre engagement ne s'arrête pas à la signature. Nous restons disponibles après la vente — parce qu'une relation de confiance ne s'arrête pas le jour du déménagement.
+      </p>
     </div>
-    <div class="service-card">
-      <div class="service-icon">📣</div>
-      <h3>Vente &amp; mise sur le marché</h3>
-      <p>Photos professionnelles, annonces multi-portails, réseau iAD de 18 000+ conseillers. Une exposition maximale pour votre bien.</p>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">🔑</div>
-      <h3>Accompagnement acquéreur</h3>
-      <p>Vous cherchez à acheter ? On sélectionne les biens correspondant réellement à vos critères et vous guide jusqu'à la signature.</p>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">📊</div>
-      <h3>Analyse de marché</h3>
-      <p>Tendances locales, délais de vente, prix au m² : des données concrètes pour décider sereinement.</p>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">🤝</div>
-      <h3>Négociation</h3>
-      <p>Nous défendons vos intérêts à chaque étape, de la première offre à la signature chez le notaire.</p>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">🗓️</div>
-      <h3>Avis de valeur sur mesure</h3>
-      <p>Une estimation en ligne, c'est un point de départ. Un avis de valeur, c'est une stratégie. Là où les outils s'arrêtent, notre analyse commence. Rendez-vous offert, sans engagement.</p>
-      </div>
-  </div>
-</section>
-
-<!-- ═══ ABOUT ═══ -->
-<section class="about" id="about">
-  <span class="section-label">Le duo derrière le projet</span>
-  <h2 class="section-title">Baptiste &amp; Daphné</h2>
-  <div class="divider"></div>
-  <div class="about-grid">
-    <div class="about-photo-area">
-      <div class="about-photo"> <img src="duonb.webp" alt="Photo duo Baptiste et Daphné"></div>
-      <a href="#rdv" class="about-badge">Rendez-vous offert<br/>sans engagement</a>
-    </div>
-    <div class="about-text">
-      <blockquote>« Un mauvais départ coûte plus cher qu'une négociation. »</blockquote>
-      <p>Nous sommes Baptiste et Daphné, mandataires indépendants en immobilier. 
-        Nous ne commençons jamais par un chiffre. Nous commençons par comprendre.</p>
-      <p>Comprendre votre situation. Lire le bien avec un regard acquéreur. Confronter l’ensemble aux ventes réellement signées dans le secteur.</p>
-      <p>Puis structurer. </p>
-      <p>Positionnement. Scénarios possibles. Conséquences de chaque choix.</p>
-      <p>Notre travail n’est pas de diffuser un bien. Il est de rendre la décision claire, lisible et maîtrisée dès le départ.</p>
-      <p>En travaillant en duo, nous confrontons nos analyses et sécurisons chaque étape. Deux lectures. Une stratégie cohérente..</p>
-      <div class="profiles">
-        <div class="profile-chip">
-          <strong>Baptiste AUDOUIN</strong>
-          <span>Mandataire IAD</span>
+    <div class="reveal d2" style="position:sticky;top:120px;align-self:start;">
+      <div class="benefits">
+        <div class="ben">
+          <div class="ben-n">01</div>
+          <div class="ben-t"><strong>Ventes réelles, pas de moyennes.</strong> Une analyse fondée sur les transactions signées chez le notaire dans votre secteur — rue par rue.</div>
         </div>
-        <div class="profile-chip">
-          <strong>Daphné MARTIN MARIN</strong>
-          <span>Mandataire IAD</span>
+        <div class="ben">
+          <div class="ben-n">02</div>
+          <div class="ben-t"><strong>Plusieurs scénarios, pas un chiffre.</strong> Des options de positionnement avec les conséquences concrètes — vous décidez en connaissance de cause.</div>
+        </div>
+        <div class="ben">
+          <div class="ben-n">03</div>
+          <div class="ben-t"><strong>De la première rencontre et au-delà.</strong> Un accompagnement jusqu'à la signature — et une relation qui dure après.</div>
+        </div>
+        <div class="ben">
+          <div class="ben-n">04</div>
+          <div class="ben-t"><strong>Deux regards, jamais un seul.</strong> Chaque décision importante est analysée en duo.</div>
         </div>
       </div>
     </div>
@@ -572,259 +166,160 @@ input:disabled + .slider { cursor: not-allowed; opacity: .5; }
 </section>
 
 <!-- ═══ AVIS ═══ -->
-<section id="avis">
-  <span class="section-label">Ce qu'ils en disent</span>
-  <h2 class="section-title">Avis de nos clients</h2>
-  <div class="divider"></div>
+<section class="s-cream wipe" id="avis">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;margin-bottom:3rem;">
+    <div class="reveal">
+      <div class="lbl">Ce qu'ils en disent</div>
+      <h2 class="s-title">Nos clients</h2>
+    </div>
+
+  </div>
 
   <div class="carousel-outer">
     <button class="carousel-btn" onclick="moveCarousel(-1)">&#8592;</button>
     <div class="carousel-clip">
       <div class="carousel-track" id="carouselTrack">
-
-        <div class="review-card">
-          <div class="stars">★★★★★</div>
-          <blockquote>« Merci pour votre estimation, elle m’a permis de bien positionné mon bien sur le marché de l'immobilier. Elle est très précise avec argumentations et explications en rapport au lieu de vente. J'ai beaucoup apprécié votre sérieux, écoute , bienveillance et surtout le fait que vous ne mettiez aucune pression. Je vous recommanderai sans hésitations à mes connaissances pour tout conseil immobilier.»</blockquote>
-          <div class="review-author"><strong>Gilles G.</strong><span>⭐ Avis Google</span></div>
+        <div class="avis-card">
+          <div class="avis-stars">★★★★★</div>
+          <p class="avis-txt">«&nbsp;Merci pour votre estimation, très précise avec argumentations et explications sur le marché local. Sérieux, écoute, bienveillance — et surtout, aucune pression. Je recommande sans hésitation.&nbsp;»</p>
+          <div class="avis-auth">Gilles G. · Avis Google vérifié</div>
         </div>
-
-        <div class="review-card">
-          <div class="stars">★★★★★</div>
-          <blockquote>« Excellent accompagnement dans la mise en vente de mon appartement, conseils pertinents, aucune pression. Baptiste va au rythme du client. Souriant, efficace, réactif. Je recommande chaudement ! »</blockquote>
-          <div class="review-author"><strong>Nathalie H.</strong><span>⭐ Avis Google</span></div>
+        <div class="avis-card">
+          <div class="avis-stars">★★★★★</div>
+          <p class="avis-txt">«&nbsp;Excellent accompagnement dans la mise en vente de mon appartement. Conseils pertinents, aucune pression. Baptiste va au rythme du client. Je recommande chaudement.&nbsp;»</p>
+          <div class="avis-auth">Nathalie H. · Avis Google vérifié</div>
         </div>
-
-        <div class="review-card">
-          <div class="stars">★★★★★</div>
-          <blockquote>« Superbe accompagnement dans l'achat de notre maison. Disponibilité, professionnalisme, sérieux... Nous nous sommes tout de suite sentis en confiance. Je recommande +++ Encore merci ! »</blockquote>
-          <div class="review-author"><strong>Anaïs D.</strong><span>⭐ Avis Google</span></div>
+        <div class="avis-card">
+          <div class="avis-stars">★★★★★</div>
+          <p class="avis-txt">«&nbsp;Superbe accompagnement dans l'achat de notre maison. Disponibilité, professionnalisme, sérieux. Nous nous sommes tout de suite sentis en confiance.&nbsp;»</p>
+          <div class="avis-auth">Anaïs D. · Avis Google vérifié</div>
         </div>
-
-        <div class="review-card">
-          <div class="stars">★★★★★</div>
-          <blockquote>« Baptiste a été d'une aide précieuse dans la concrétisation de notre projet immobilier. De la première visite jusqu'à la signature, un accompagnement sans faille à chaque étape. Un grand merci ! »</blockquote>
-          <div class="review-author"><strong>Nicolas G.</strong><span>⭐ Avis Google</span></div>
+        <div class="avis-card">
+          <div class="avis-stars">★★★★★</div>
+          <p class="avis-txt">«&nbsp;De la première visite jusqu'à la signature, un accompagnement sans faille à chaque étape. Un grand merci.&nbsp;»</p>
+          <div class="avis-auth">Nicolas G. · Avis Google vérifié</div>
         </div>
-
-        <div class="review-card">
-          <div class="stars">★★★★★</div>
-          <blockquote>« Un grand merci à Daphné et Baptiste ! Ils sont très professionnels, à l'écoute, disponibles et toujours de bon conseil. Grâce à leur accompagnement sérieux et humain, chaque étape se déroule en toute confiance. Je recommande vivement ! »</blockquote>
-          <div class="review-author"><strong>Michèle B.</strong><span>⭐ Avis Google</span></div>
+        <div class="avis-card">
+          <div class="avis-stars">★★★★★</div>
+          <p class="avis-txt">«&nbsp;Très professionnels, à l'écoute, disponibles. Grâce à leur accompagnement sérieux et humain, chaque étape s'est déroulée en toute confiance.&nbsp;»</p>
+          <div class="avis-auth">Michèle B. · Avis Google vérifié</div>
         </div>
-
-        <div class="review-card">
-          <div class="stars">★★★★★</div>
-          <blockquote>« Un grand merci à Daphné et Baptiste pour leur accompagnement. Leur compétence, leur gentillesse et leur bienveillance ont fait toute la différence. Un suivi sérieux et rassurant, je recommande vivement. »</blockquote>
-          <div class="review-author"><strong>Arnaud G.</strong><span>⭐ Avis Google</span></div>
+        <div class="avis-card">
+          <div class="avis-stars">★★★★★</div>
+          <p class="avis-txt">«&nbsp;B & D sont des personnes humaines, à l'écoute et toujours de bon conseil. Leur attitude inspire confiance. Francs, persévérants, consciencieux — ils ne lâchent jamais l'affaire.&nbsp;»</p>
+          <div class="avis-auth">Éléonore M. · Avis Google vérifié</div>
         </div>
-
-        <div class="review-card">
-          <div class="stars">★★★★★</div>
-          <blockquote>« Nous avons été ravis de l'accompagnement de Baptiste et Daphné, très professionnels et investis tout au long de notre achat. Leur disponibilité et leur sérieux ont fait toute la différence. »</blockquote>
-          <div class="review-author"><strong>Theotime D.</strong><span>⭐ Avis Google</span></div>
+        <div class="avis-card">
+          <div class="avis-stars">★★★★★</div>
+          <p class="avis-txt">«&nbsp;Baptiste et Daphné sont des professionnels passionnés, à l'écoute et toujours disponibles. Leur accompagnement sur mesure nous a permis de concrétiser notre projet d'achat.&nbsp;»</p>
+          <div class="avis-auth">Pauline C. · Avis Google vérifié</div>
         </div>
-
-        <div class="review-card">
-          <div class="stars">★★★★★</div>
-          <blockquote>« Baptiste et Daphné sont des professionnels passionnés, à l'écoute et toujours disponibles. Leur accompagnement sur mesure nous a permis de concrétiser notre projet d'achat. Je recommande ! »</blockquote>
-          <div class="review-author"><strong>Pauline C.</strong><span>⭐ Avis Google</span></div>
+        <div class="avis-card">
+          <div class="avis-stars">★★★★★</div>
+          <p class="avis-txt">«&nbsp;Un grand merci à Daphné et Baptiste. Leur compétence, leur gentillesse et leur bienveillance ont fait toute la différence. Un suivi sérieux et rassurant, je recommande vivement.&nbsp;»</p>
+          <div class="avis-auth">Arnaud G. · Avis Google vérifié</div>
         </div>
-
-        <div class="review-card">
-          <div class="stars">★★★★★</div>
-          <blockquote>« Visite bien préparée et organisée. Renseignements et informations très utiles. Moment agréable et courtois. »</blockquote>
-          <div class="review-author"><strong>Laurent B.</strong><span>⭐ Avis Google</span></div>
-        </div>
-
-        <div class="review-card">
-          <div class="stars">★★★★★</div>
-          <blockquote>« B & D sont des personnes humaines, à l'écoute et toujours de bon conseil. Leur attitude inspire confiance. Franchises, persévérants et consciencieux, ils ne lâchent jamais l'affaire. De vrais tempéraments fiables, que je recommande sans hésiter. »</blockquote>
-          <div class="review-author"><strong>Eléonore M.</strong><span>⭐ Avis Google</span></div>
-        </div>
-
-        <div class="review-card">
-          <div class="stars">★★★★★</div>
-          <blockquote>« Un fort sympathique couple, consciencieux, très investi et déterminé à satisfaire leurs clients. Je recommande sans hésiter ! »</blockquote>
-          <div class="review-author"><strong>Béatrice G.</strong><span>⭐ Avis Google</span></div>
-        </div>
-
-        <div class="review-card">
-          <div class="stars">★★★★★</div>
-          <blockquote>« Très bons conseils apportés ! Je recommande vivement. »</blockquote>
-          <div class="review-author"><strong>Guillaume L.</strong><span>⭐ Avis Google</span></div>
-        </div>
-
-        <div class="review-card">
-          <div class="stars">★★★★★</div>
-          <blockquote>« Très bon contact avec cette agence. Équipe professionnelle, à l'écoute et sérieuse dans son approche. Les échanges ont été clairs et agréables. Je recommande. »</blockquote>
-          <div class="review-author"><strong>Swann L.</strong><span>⭐ Avis Google</span></div>
-        </div>
-
-        <div class="review-card">
-          <div class="stars">★★★★★</div>
-          <blockquote>« »</blockquote>
-          <div class="review-author"><strong>Molly G.</strong><span>⭐ Avis Google</span></div>
-        </div>
-
       </div>
     </div>
     <button class="carousel-btn" onclick="moveCarousel(1)">&#8594;</button>
   </div>
 
-  <div class="carousel-dots" id="carouselDots"></div>
-
-  <div style="text-align:center;margin-top:2.5rem">
-    <a href="https://www.google.com/search?client=firefox-b-d&hs=xQp9&sa=X&sca_esv=2db205cac03e69c1&hl=fr-FR&sxsrf=ANbL-n6jUmF_ZFrvyJRuzSRzUxA87yAIyA:1771961730840&q=Baptiste+%26+Daphn%C3%A9+Immobilier+Chamb%C3%A9ry+Avis&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNDU1MrOwMLUwMbI0NTAyNLAwNtnAyPiKUccpsaAks7gkVUFNwSWxICPv8EoFz9zc_KTMnMzUIgXnjMTcpMMriyoVHMsyixexkqQcAAigoSV5AAAA&rldimm=15526885842950210834&tbm=lcl&ved=2ahUKEwjhzZbs7_KSAxWCRKQEHaiRMoUQ9fQKegQILRAG&biw=1280&bih=667&dpr=1.5#lkt=LocalPoiReviews" target="_blank" class="btn-outline">Voir tous les avis Google ↗</a>
-    <p style="font-size:.8rem;color:rgba(255,255,255,.35);margin-top:.8rem">100% d'avis 5 étoiles · Chaque client recommande</p>
+  <div class="reveal" style="margin-top:2rem;display:flex;align-items:center;gap:1rem;">
+    <span style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;color:var(--charcoal);">5,0</span>
+    <span style="font-size:.72rem;color:#7E7870;letter-spacing:.04em;">★★★★★ · Google</span>
+    <a href="https://www.google.com/search?q=Baptiste+Daphn%C3%A9+Immobilier+Chamb%C3%A9ry+Avis" target="_blank"
+       style="font-size:.68rem;color:#7E7870;text-decoration:none;border-bottom:1px solid var(--border-l);padding-bottom:1px;margin-left:.5rem;transition:color .2s;"
+       onmouseover="this.style.color='#181818'" onmouseout="this.style.color='#7E7870'">voir les avis ↗</a>
   </div>
-</section>
-  
-<!-- ═══ ZONE GEO ═══ -->
-<section class="zone" id="zone">
-  <span class="section-label">Notre terrain</span>
-  <h2 class="section-title">Zone d'intervention</h2>
-  <div class="divider"></div>
-  <div class="zone-wrap">
+
+  <div class="post-avis reveal">
     <div>
-      <p class="section-sub">Nous intervenons principalement en Savoie, autour de Chambéry et ses communes alentours.</p>
-      <div class="cities">
-        <span class="city-pill">Chambéry</span>
-        <span class="city-pill">Jacob-Bellecombette</span>
-        <span class="city-pill">Montagnole</span>
-        <span class="city-pill">Barberaz</span>
-        <span class="city-pill">Cognin</span>
-        <span class="city-pill">La Ravoire</span>
-        <span class="city-pill">Barby</span>
-        <span class="city-pill">Bassens</span>
-        <span class="city-pill">Challes-Les-Eaux</span>
-        <span class="city-pill">Saint-Alban-En-Leysse</span>
-        <span class="city-pill">Saint-Jean-D'Arvey</span>
-        <span class="city-pill">Thoiry</span>
-        <span class="city-pill">Et alentours…</span>
-      </div>
-      <div style="margin-top:2.5rem">
-        <p style="font-size:.9rem;color:rgba(255,255,255,.5);margin-bottom:.8rem">Pas dans cette liste ? Contactez-nous.</p>
-        <a href="tel:0610327493" class="btn-outline">📞 06 10 32 74 93</a>
-      </div>
+      <p class="post-avis-q">Ces propriétaires avaient un projet. Nous les avons accompagnés jusqu'au bout.</p>
+
     </div>
-    <div style="border-radius:16px;overflow:hidden;border:1px solid rgba(200,151,58,.2);line-height:0;">
-      <iframe title="Notre zone d'intervention sur Google Maps" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d44683.684089633396!2d5.9223654786586595!3d45.57586280170221!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sfr!4v1771864829011!5m2!1sfr!2sfr" width="100%" height="450" style="border:0;display:block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <div class="post-avis-right">
+      <a href="#rdv" class="cta-btn" style="white-space:nowrap;">Entrons en relation</a>
+      <p class="post-avis-note">Offert · Sans engagement</p>
     </div>
   </div>
 </section>
 
-<!-- ═══ CALENDLY / CTA ═══ -->
-<section class="cta-section" id="rdv">
-  <span class="section-label">Rendez-vous offert, sans engagement</span>
-  <h2 class="section-title">Choisissez votre créneau<br/>en ligne</h2>
-  <p class="section-sub">Réservez directement votre rendez-vous d'évaluation. Les outils d'estimation donnent une fourchette. On commence là où ils s'arrêtent.</p>
-
-<div class="calendly-wrapper">
-  <iframe
-    title="Prise de rendez-vous en ligne"
-    id="calendly-iframe"
-    data-src="https://calendly.com/baptiste-daphne-immo/estimation?embed_domain=baptistedaphneimmo.com&embed_type=Inline"
-    width="100%"
-    height="700"
-    frameborder="0">
-  </iframe>
+<!-- ═══ BANDEAU ═══ -->
+<div class="bandeau">
+  <p class="bandeau-q">«&nbsp;Un mauvais départ coûte plus cher qu'une négociation.&nbsp;»</p>
+  <a href="tel:0610327493" class="bandeau-tel">06 10 32 74 93</a>
 </div>
-  
+
+<!-- ═══ RDV ═══ -->
+<section class="s-ivory wipe" id="rdv">
+  <div class="rdv-layout">
+    <div class="reveal reveal-l">
+      <div class="lbl">Premier contact</div>
+      <h2 class="rdv-title">Votre projet mérite<br><em>une vraie conversation.</em></h2>
+      <p class="rdv-txt">Le premier rendez-vous se passe chez vous, sur les lieux de votre bien. Les outils d'estimation donnent une fourchette — nous commençons là où ils s'arrêtent.</p>
+      <div style="display:flex;flex-direction:column;gap:1rem;">
+        <div class="rdv-block">
+          <a href="tel:0610327493" class="rdv-phone-big">06 10 32 74 93</a>
+          <div class="rdv-phone-sub">Nous décrocherons.</div>
+        </div>
+        <p class="rdv-promise">Premier rendez-vous chez vous · Offert · Sans engagement</p>
+        <div style="border-top:1px solid var(--border-l);padding-top:1.2rem;margin-top:.8rem;">
+          <p style="font-size:.8rem;color:#4E4A46;margin-bottom:.8rem;font-weight:400;">Vous préférez écrire&nbsp;?</p>
+          <div style="display:flex;flex-direction:column;gap:.6rem;">
+            <a href="mailto:contact@baptistedaphneimmo.com?subject=Projet%20de%20vente%20%E2%80%94%20[votre%20ville]&body=Bonjour%20Baptiste%20et%20Daph%C3%A9n%C3%A9%2C%0A%0AJe%20vous%20contacte%20au%20sujet%20de%20mon%20bien%20situ%C3%A9%20%C3%A0%20[adresse]%20%28[type%20de%20bien%5D%2C%20[surface]%20m%C2%B2%29.%0A%0AMon%20projet%20%3A%20[d%C3%A9crivez%20votre%20situation%20et%20votre%20calendrier]%0A%0ACordialement%2C%0A[Votre%20pr%C3%A9nom%20et%20nom]"
+               style="font-size:.92rem;color:var(--charcoal);text-decoration:none;display:flex;align-items:center;gap:.6rem;padding:.7rem 1rem;background:var(--cream);border:1px solid var(--border-l);transition:border-color .2s;"
+               onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border-l)'">
+              <span style="color:var(--gold);">✉</span> contact@baptistedaphneimmo.com
+            </a>
+            <a href="https://wa.me/33610327493?text=Bonjour%20Baptiste%20et%20Daphn%C3%A9%2C%20je%20souhaite%20discuter%20de%20mon%20projet%20de%20vente." target="_blank"
+               style="font-size:.92rem;color:var(--charcoal);text-decoration:none;display:flex;align-items:center;gap:.6rem;padding:.7rem 1rem;background:var(--cream);border:1px solid var(--border-l);transition:border-color .2s;"
+               onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border-l)'">
+              <span style="color:var(--gold);">💬</span> WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="rdv-right reveal d2">
+      <p class="rdv-right-lbl">Baptiste &amp; Daphné Immobilier</p>
+      <h3 class="rdv-right-title">Conseillers en immobilier à Chambéry &amp; Savoie</h3>
+      <p class="rdv-right-txt">Stratégie de vente immobilière · Vente d'appartements et maisons · Cession de fonds de commerce · Vente d'immeubles · Vente de locaux commerciaux · Immobilier d'entreprise</p>
+      <div style="margin-top:2rem;padding-top:2rem;border-top:1px solid var(--border-l);">
+        <div style="font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);margin-bottom:.5rem;">Zone d'intervention</div>
+        <div style="font-size:.83rem;color:var(--charcoal);line-height:1.85;">Chambéry · Jacob-Bellecombette · Cognin · La Ravoire · Barberaz · Montagnole · Barby · Bassens · Challes-les-Eaux · Saint-Alban-Leysse et alentours</div>
+      </div>
+      <div style="margin-top:2rem;padding-top:2rem;border-top:1px solid var(--border-l);">
+        <a href="https://www.google.com/search?q=Baptiste+Daphn%C3%A9+Immobilier+Chamb%C3%A9ry+Avis" target="_blank"
+           style="font-size:.76rem;color:var(--gray);text-decoration:none;border-bottom:1px solid var(--border-l);padding-bottom:2px;">
+          Voir nos avis Google ★★★★★
+        </a>
+      </div>
+    </div>
+  </div>
 </section>
-   <!-- Tracking conversion Calendly → Google Ads -->
- <script>
-  window.addEventListener("message", function (e) {
-    if (e.data.event && e.data.event === "calendly.event_scheduled") {
-      gtag('event', 'conversion', {
-        'send_to': 'AW-17870834052/Kd-vCIqK-v4bEISTvclC'
-      });
-    }
-  });
-</script>
-<script>
-  function loadCalendly() {
-    var iframe = document.getElementById('calendly-iframe');
-    if (iframe && !iframe.src) {
-      iframe.src = iframe.dataset.src;
-    }
-  }
 
-  // Chargement immédiat si l'URL pointe vers #rdv (campagne ads)
-  if (window.location.hash === '#rdv') {
-    loadCalendly();
-  } else {
-    // Sinon, chargement au scroll quand la section devient visible
-    var observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          loadCalendly();
-          observer.disconnect();
-        }
-      });
-    }, { rootMargin: '200px' });
-
-    var section = document.getElementById('rdv');
-    if (section) observer.observe(section);
-  }
-</script>
-<!-- ═══ CONTACT BAR ═══ -->
-<div class="contact-bar">
-  <p>Vous préférez appeler ?</p>
-  <div class="sep"></div>
-  <a href="tel:0610327493">06 10 32 74 93</a>
-  <div class="sep"></div>
-  <p style="font-weight:400;opacity:.7">Rendez-vous offert, sans engagement.</p>
-</div>
-</main>
 <!-- ═══ FOOTER ═══ -->
 <footer>
-  <div>
-    <div class="footer-logo">Baptiste &amp; Daphné <span>Immobilier</span></div>
-    <div class="footer-links" style="margin-top:.8rem">
-      <a href="mentionslegales.html">Mentions légales</a>
-      <a href="politiquedeconfidentialite.html">Confidentialité</a>
-      <a href="gestiondescookies.html">Cookies</a>
-    </div>
+  <div class="footer-logo">Baptiste <span>&</span> Daphné Immobilier</div>
+  <div class="footer-info">
+    EI Daphné Martin Marin Guillon &amp; EI Baptiste Audouin · Conseillers en immobilier · Vente immobilière Chambéry &amp; Savoie · Réseau IAD France<br>
+    RSAC Chambéry n° 992 606 400 et n° 943 392 555 · Document non contractuel · 2026
   </div>
-  <p>EI Daphné MARTIN MARIN GUILLON, EI Baptiste AUDOUIN — mandataires indépendants IAD France — RSAC Chambéry n° 992 606 400 et n° 943 392 555 — Document non contractuel — Février 2026</p>
+  <div class="footer-links">
+    <a href="/mentionslegales.html">Mentions légales</a>
+    <a href="/politiquedeconfidentialite.html">Confidentialité</a>
+    <a href="/gestiondescookies.html">Cookies</a>
+  </div>
 </footer>
-               
-<script>
-  const track = document.getElementById('carouselTrack');
-  const dotsEl = document.getElementById('carouselDots');
-  let current = 0;
 
-  function perView() { return window.innerWidth <= 768 ? 1 : 3; }
+<script src="script.js" defer></script>
+<script src="cookies.js" defer></script>
+<script src="tracking.js" defer></script>
 
-  function buildDots() {
-    dotsEl.innerHTML = '';
-    const total = Math.ceil(track.children.length / perView());
-    for (let i = 0; i < total; i++) {
-      const d = document.createElement('div');
-      d.className = 'dot' + (i === 0 ? ' active' : '');
-      d.onclick = () => goTo(i);
-      dotsEl.appendChild(d);
-    }
-  }
 
-  function goTo(i) {
-    const total = Math.ceil(track.children.length / perView());
-    current = Math.max(0, Math.min(i, total - 1));
-    const w = track.children[0].offsetWidth + 24;
-    track.style.transform = `translateX(-${current * w * perView()}px)`;
-    document.querySelectorAll('.dot').forEach((d, j) => d.classList.toggle('active', j === current));
-  }
-
-  function moveCarousel(dir) { goTo(current + dir); }
-
-  buildDots();
-  window.addEventListener('resize', () => { buildDots(); goTo(0); });
-</script>
-  
- <!-- ── HTML ── -->
+<!-- ═══ BANDEAU COOKIES ═══ -->
 <div id="cookie-banner">
 
-  <!-- Vue principale -->
   <div id="banner-main">
     <div class="banner-left">
       <strong>🍪 Ce site utilise des cookies</strong>
@@ -840,12 +335,9 @@ input:disabled + .slider { cursor: not-allowed; opacity: .5; }
     </div>
   </div>
 
-  <!-- Vue personnalisation (cachée par défaut) -->
   <div id="banner-custom">
     <div class="custom-title">⚙ Personnaliser mes préférences</div>
-
     <div class="custom-rows">
-
       <div class="custom-row required">
         <div class="custom-row-info">
           <strong>🔒 Essentiels</strong>
@@ -853,7 +345,6 @@ input:disabled + .slider { cursor: not-allowed; opacity: .5; }
         </div>
         <label class="toggle"><input type="checkbox" checked disabled><span class="slider"></span></label>
       </div>
-
       <div class="custom-row">
         <div class="custom-row-info">
           <strong>📊 Google Analytics</strong>
@@ -861,7 +352,6 @@ input:disabled + .slider { cursor: not-allowed; opacity: .5; }
         </div>
         <label class="toggle"><input type="checkbox" id="c-ga"><span class="slider"></span></label>
       </div>
-
       <div class="custom-row">
         <div class="custom-row-info">
           <strong>📣 Google Ads</strong>
@@ -869,7 +359,6 @@ input:disabled + .slider { cursor: not-allowed; opacity: .5; }
         </div>
         <label class="toggle"><input type="checkbox" id="c-ads"><span class="slider"></span></label>
       </div>
-
       <div class="custom-row">
         <div class="custom-row-info">
           <strong>🎥 Microsoft Clarity</strong>
@@ -877,138 +366,15 @@ input:disabled + .slider { cursor: not-allowed; opacity: .5; }
         </div>
         <label class="toggle"><input type="checkbox" id="c-clarity"><span class="slider"></span></label>
       </div>
-
     </div>
-
     <div class="custom-actions">
       <button class="btn-save-custom" onclick="saveCustom()">Enregistrer mes choix ✓</button>
       <button class="btn-back-banner" onclick="closeCustom()">← Retour</button>
       <button class="btn-refuse-all-custom" onclick="bannerRefuse()">Tout refuser</button>
     </div>
   </div>
+
 </div>
 
-<!-- ── SCRIPT ── -->
-<script>
-  var CONSENT_KEY     = 'bd_cookie_consent';
-  var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxyOw_-JcSlntZrNxg-IcNM7tBHqzTj5Zimfhugf8Lf2kGzaWcDVIFFkpCgAWcbRdCy_Q/exec'; // ← remplacez par votre URL Apps Script
-
-  function getSessionId() {
-    var sid = sessionStorage.getItem('bd_sid');
-    if (!sid) { sid = 'u_' + Date.now() + '_' + Math.random().toString(36).substr(2,8); sessionStorage.setItem('bd_sid', sid); }
-    return sid;
-  }
-
- function activateAnalytics() {
-  if (window._gaLoaded) return; window._gaLoaded = true;
-  var s = document.createElement('script'); s.async = true;
-  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-41DC15H7KJ'; // ← votre ID GA4
-  document.head.appendChild(s);
-  window.dataLayer = window.dataLayer || [];
-  window.gtag = function(){ dataLayer.push(arguments); };
-  gtag('js', new Date()); gtag('config', 'G-41DC15H7KJ');
-}
-
-function activateAds() {
-  if (window._adsLoaded) return; window._adsLoaded = true;
-  var s = document.createElement('script'); s.async = true;
-  s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-17870834052';
-  document.head.appendChild(s);
-  window.dataLayer = window.dataLayer || [];
-  window.gtag = function(){ dataLayer.push(arguments); };
-  gtag('js', new Date()); gtag('config', 'AW-17870834052');
-}
-
-  function activateClarity() {
-    if (window._clarityLoaded) return; window._clarityLoaded = true;
-    (function(c,l,a,r,i,t,y){
-      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window,document,"clarity","script","vnvyypfvt5");
-  }
-
-function logToSheet(prefs, decision) {
-  if (!APPS_SCRIPT_URL) return;
-  
-  var formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSedRoADTym4LVkXkdJ13hhbVig5mW-bO00qhG-ibnmuAhfXLA/formResponse';
-  
-  var params = [
-    'entry.839408998='  + encodeURIComponent(getSessionId()),
-    'entry.1724484721=' + encodeURIComponent(decision),
-    'entry.1435701037=' + encodeURIComponent(prefs.analytics ? 'Oui' : 'Non'),
-    'entry.1901302805=' + encodeURIComponent(prefs.ads       ? 'Oui' : 'Non'),
-    'entry.203643052='  + encodeURIComponent(prefs.clarity   ? 'Oui' : 'Non'),
-    'entry.1764155101=' + encodeURIComponent(window.location.pathname)
-  ].join('&');
-
-  fetch(formUrl, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: params
-  }).catch(function(){});
-}
-
-  function applyAndLog(prefs, decision) {
-    localStorage.setItem(CONSENT_KEY, JSON.stringify(Object.assign({}, prefs, { ts: Date.now() })));
-    if (prefs.analytics) activateAnalytics();
-    if (prefs.ads) activateAds();
-    if (prefs.clarity) activateClarity();
-    logToSheet(prefs, decision);
-  }
-
-  function hideBanner() { document.getElementById('cookie-banner').classList.remove('visible'); }
-
-  function bannerAccept() {
-    applyAndLog({ analytics: true, ads: true, clarity: true }, 'accept_all');
-    hideBanner();
-  }
-
-  function bannerRefuse() {
-    applyAndLog({ analytics: false, ads: false, clarity: false }, 'refuse_all');
-    hideBanner();
-  }
-
-  function openCustom() {
-    document.getElementById('banner-main').style.display = 'none';
-    document.getElementById('banner-custom').classList.add('open');
-  }
-
-  function closeCustom() {
-    document.getElementById('banner-custom').classList.remove('open');
-    document.getElementById('banner-main').style.display = '';
-  }
-
-  function saveCustom() {
-    var prefs = {
-      analytics: document.getElementById('c-ga').checked,
-      ads:       document.getElementById('c-ads').checked,
-      clarity:   document.getElementById('c-clarity').checked
-    };
-    applyAndLog(prefs, 'custom');
-    hideBanner();
-  }
-
-  // Init
-  (function(){
-    try {
-      var saved = JSON.parse(localStorage.getItem(CONSENT_KEY));
-if (saved) {
-  if (saved.analytics) activateAnalytics();
-  if (saved.ads) activateAds();
-  if (saved.clarity) activateClarity();
-  var alreadyLogged = sessionStorage.getItem('bd_session_logged');
-  if (!alreadyLogged) {
-    sessionStorage.setItem('bd_session_logged', '1');
-    logToSheet(saved, 'returning');
-  }
-  return;
-}
-    } catch(e) {}
-    setTimeout(function(){ document.getElementById('cookie-banner').classList.add('visible'); }, 1200);
-  })();
-</script>
-  
 </body>
 </html>
