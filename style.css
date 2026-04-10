@@ -75,7 +75,7 @@ nav{
 .nav-right{display:flex;align-items:center;gap:1.4rem;flex-shrink:0;}
 .nav-phone{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:300;color:var(--charcoal);text-decoration:none;letter-spacing:.04em;transition:color .2s;}
 .nav-phone:hover{color:var(--gold);}
-.nav-cta{font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ivory);background:var(--charcoal);padding:.68rem 1.4rem;text-decoration:none;font-weight:400;transition:background .25s,transform .15s;white-space:nowrap;}
+.nav-cta{font-size:.58rem;letter-spacing:.04em;padding:.55rem .7rem;white-space:nowrap;max-width:160px;overflow:hidden;text-overflow:ellipsis;}
 .nav-cta:hover{background:var(--gold);transform:translateY(-1px);}
 
 /* ── HERO ── */
@@ -376,8 +376,8 @@ footer{background:var(--charcoal);color:var(--ivory);padding:2.8rem 8vw;display:
   /* ── HERO ── */
   .hero{grid-template-columns:1fr;min-height:auto;}
   .hero-left{padding:5rem 6vw 2.5rem;}
-  .hero-right{height:80vw;min-height:300px;}
-  .hero-right img{object-position:center 20%;}
+  .hero-right{height:100vw;min-height:360px;}
+.hero-right img{object-position:center 15%;transform:scale(1.1);}
   .hero-stat{gap:1.5rem;}
   .cta-cluster{flex-direction:column;align-items:stretch;}
   .btn-primary,.btn-phone{width:100%;justify-content:center;}
