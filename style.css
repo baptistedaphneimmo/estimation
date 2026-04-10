@@ -75,7 +75,7 @@ nav{
 .nav-right{display:flex;align-items:center;gap:1.4rem;flex-shrink:0;}
 .nav-phone{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:300;color:var(--charcoal);text-decoration:none;letter-spacing:.04em;transition:color .2s;}
 .nav-phone:hover{color:var(--gold);}
-.nav-cta{font-size:.6rem;letter-spacing:.06em;padding:.6rem .8rem;background:var(--gold);color:var(--charcoal);}
+.nav-cta{font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ivory);background:var(--charcoal);padding:.68rem 1.4rem;text-decoration:none;font-weight:400;transition:background .25s,transform .15s;white-space:nowrap;}
 .nav-cta:hover{background:var(--gold);transform:translateY(-1px);}
 
 /* ── HERO ── */
