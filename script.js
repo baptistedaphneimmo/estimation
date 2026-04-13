@@ -36,6 +36,21 @@ const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersec
 document.querySelectorAll('.reveal,.reveal-l').forEach(el=>obs.observe(el));
 
 
+// ── STICKY MOBILE — masquer dès que #avis atteint le haut ──
+const avisSection = document.getElementById('avis');
+const stickyBar = document.querySelector('.mobile-sticky');
+
+window.addEventListener('scroll', () => {
+  if(!avisSection || !stickyBar) return;
+  const rect = avisSection.getBoundingClientRect();
+ if(rect.top <= 60){
+    stickyBar.style.display = 'none';
+  } else {
+    stickyBar.style.display = window.innerWidth <= 900 ? 'block' : 'none';
+  }
+  
+}, {passive:true});
+
 
 let carPos = 0;
 function moveCarousel(dir) {
@@ -44,10 +59,21 @@ function moveCarousel(dir) {
   const perView = window.innerWidth > 900 ? 3 : 1;
   const max = cards.length - perView;
   carPos = Math.max(0, Math.min(carPos + dir, max));
-  const cardW = cards[0].offsetWidth + 24; // gap 1.5rem = 24px
+  const cardW = cards[0].offsetWidth + 24;
   track.style.transform = `translateX(-${carPos * cardW}px)`;
+
+  const dotsContainer = document.getElementById('carouselDots');
+  if(dotsContainer){
+    dotsContainer.innerHTML = '';
+    for(let i = 0; i <= max; i++){
+      const dot = document.createElement('div');
+      dot.className = 'carousel-dot' + (i === carPos ? ' active' : '');
+      dot.onclick = () => moveCarousel(i - carPos);
+      dotsContainer.appendChild(dot);
+    }
+  }
 }
-window.addEventListener('resize', () => moveCarousel(0));
+moveCarousel(0);
 
 const cobs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
