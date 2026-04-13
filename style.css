@@ -84,6 +84,7 @@ nav{
 }
 .hero-left{
   display:flex;flex-direction:column;justify-content:center;
+  padding:2rem 4vw 2rem 8vw;
   position:relative;z-index:2;
 }
 .hero-eyebrow{
